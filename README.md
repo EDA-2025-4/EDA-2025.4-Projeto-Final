@@ -1,6 +1,6 @@
 # EDA-2025.4-Projeto-Final
 
-# Integrantes
+## Integrantes
 * **Nome:** Matheus Nunes Ferreira da Silva  
 * **Matrícula:** 242005150
 
