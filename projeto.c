@@ -116,7 +116,6 @@ int main(void) {
 
 Cliente *menu_cliente(Cliente *clientes) {
   int opcao_menu;
-  char cpf_buscar[MAX_LEN_CPF];
   do {
     printf("\n-----Gerenciamento De Clientes------\n");
     printf("1 - Cadastrar Cliente\n");
@@ -140,7 +139,7 @@ Cliente *menu_cliente(Cliente *clientes) {
       break;
 
     case 3: {
-      buscar_cliente(clientes); 
+      buscar_cliente(clientes);
     } break;
 
     case 4:
@@ -230,32 +229,29 @@ void listar_cliente(const Cliente *clientes) {
   return;
 }
 
-void buscar_cliente(Cliente *clientes){
-	char cpf_busca [MAX_LEN_CPF];
-	printf("Caso queira retornar ao menu digite 0\n");
-	printf("Digite o CPF do Cliente (xxx.xxx.xxx-xx): ");
-	fgets(cpf_busca, MAX_LEN_CPF, stdin);
-	cpf_busca [strcspn(cpf_busca, "\n")] = '\0';
+void buscar_cliente(Cliente *clientes) {
+  char cpf_busca[MAX_LEN_CPF];
+  printf("P.S: Caso queira retornar ao menu digite 0\n");
+  printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
+  fgets(cpf_busca, MAX_LEN_CPF, stdin);
+  cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
 
-	if(strcmp(cpf_busca, "0")){
-		return;
-	}
+  if (strcmp(cpf_busca, "0") == 0) {
+    return;
+  }
 
-	Cliente *encontrado = buscar_cliente_cpf(clientes, cpf_busca);
-	if (encontrado != NULL){
-		printf("-----Informacoes Cliente-----\n");
-		printf("Nome: %s\n", encontrado->nome);
-		printf("CPF: %s\n", encontrado->cpf);
-		printf("Data de Nascimento: %s\n", encontrado->data_nascimento);
-		printf("Telefone: %s\n", encontrado->telefone);
-		printf("Email: %s\n", encontrado->email);
-
-	}
-	printf("\n");
-	printf("\nSelecione ENTER para voltar ao menu");
-	getchar();
-
-
+  Cliente *encontrado = buscar_cliente_cpf(clientes, cpf_busca);
+  if (encontrado != NULL) {
+    printf("-----Informacoes Cliente-----\n");
+    printf("Nome: %s\n", encontrado->nome);
+    printf("CPF: %s\n", encontrado->cpf);
+    printf("Data de Nascimento: %s\n", encontrado->data_nascimento);
+    printf("Telefone: %s\n", encontrado->telefone);
+    printf("Email: %s\n", encontrado->email);
+  }
+  printf("\n");
+  printf("\nSelecione ENTER para voltar ao menu");
+  getchar();
 }
 
 Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
@@ -270,6 +266,6 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
     buscar_cliente = buscar_cliente->prox;
   }
 
-  printf(iguais ? "CPF Encontrado!" : "CPF Nao Encontrado!");
+  printf(iguais ? "CPF Encontrado!\n" : "CPF Nao Encontrado!\n");
   return (iguais) ? buscar_cliente : NULL;
 }
