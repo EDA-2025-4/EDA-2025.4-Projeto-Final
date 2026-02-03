@@ -68,8 +68,8 @@ int main(void) {
   Cliente *clientes = NULL;
   Produto *produtos = NULL;
   int opcao_menu;
-
-  for (;;) {
+	
+	do{
     printf("-----Menu Principal-----\n");
     printf("1 - Gerenciamento de Cliente\n");
     printf("2 - Gerenciamento de Produtos\n");
@@ -77,7 +77,6 @@ int main(void) {
     printf("0 - Sair\n");
     printf("Escolha uma Opcao: ");
     scanf("%d", &opcao_menu);
-    do {
       switch (opcao_menu) {
       case 1:
         clientes = menu_cliente(clientes);
@@ -90,6 +89,7 @@ int main(void) {
       case 3:
         if (clientes == NULL || produtos == NULL) {
           printf("Produtos e/ou Clientes Nao Disponiveis\n");
+					break;
         } else {
           modo_compra(clientes, produtos);
           break;
