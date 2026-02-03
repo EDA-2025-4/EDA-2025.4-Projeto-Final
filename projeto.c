@@ -14,3 +14,10 @@ typedef struct cliente {
 	char email [MAX_LEN_EMAIL];
 	char data_nascimento [MAX_LEN_NASC];
 }Cliente;
+
+typedef struct produto {
+	int codigo;
+	char nome_produto [MAX_LEN_NOME];
+	float preco;
+	int quantidade;
+}Produto;
