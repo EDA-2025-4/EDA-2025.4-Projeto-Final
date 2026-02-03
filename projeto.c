@@ -123,7 +123,9 @@ Cliente *menu_cliente(Cliente *clientes) {
     printf("5 - Remover Cliente\n");
     printf("0 - Voltar ao Menu Principal\n");
     printf("Escolha uma Opcao: ");
-    scanf(" %d", &opcao_menu);
+    scanf("%d", &opcao_menu);
+    while (getchar() != '\n')
+      ;
 
     switch (opcao_menu) {
     case 1:
