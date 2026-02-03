@@ -89,7 +89,6 @@ int main(void) {
       case 3:
         if (clientes == NULL || produtos == NULL) {
           printf("Produtos e/ou Clientes Nao Disponiveis\n");
-					break;
         } else {
           modo_compra(clientes, produtos);
 					}
