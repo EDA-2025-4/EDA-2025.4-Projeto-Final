@@ -82,7 +82,7 @@ int main(void) {
     switch (opcao_menu) {
     case 1:
       printf("\nMenu Cliente\n");
-				printf("\n");
+      printf("\n");
       // clientes = menu_cliente(clientes);
       break;
 
@@ -94,20 +94,19 @@ int main(void) {
 
     case 3:
       if (clientes == NULL || produtos == NULL) {
-        printf("Produtos e/ou Clientes Nao Disponiveis\n");
-				printf("\n");
+        printf("\nProdutos e/ou Clientes Nao Disponiveis\n");
+        printf("\n");
       } else {
         // modo_compra(clientes, produtos);
       }
       break;
 
     case 0:
-      return 0;
       break;
 
     default:
       printf("\nOpcao Invalida\n");
-				printf("\n");
+      printf("\n");
       break;
     }
   } while (opcao_menu != 0);
