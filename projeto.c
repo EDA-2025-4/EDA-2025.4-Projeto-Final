@@ -1,4 +1,3 @@
-#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,7 +15,7 @@ typedef struct carrinho Carrinho;
 struct cliente {
   char nome[MAX_LEN_NOME];
   char cpf[MAX_LEN_CPF];
-	char telefone [MAX_LEN_TEL];
+  char telefone[MAX_LEN_TEL];
   char email[MAX_LEN_EMAIL];
   char data_nascimento[MAX_LEN_NASC];
 
@@ -125,10 +124,9 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
   }
 
   printf("\n-----CADASTRAR CLIENTE-----");
-	printf("Insira seu Nome: \n");
-	fgets(novo->nome, MAX_LEN_NOME, stdin);
-	novo->nome[strcspn(novo->nome, "\n")]= '\0';
-	
+  printf("Insira seu Nome: ");
+  fgets(novo->nome, MAX_LEN_NOME, stdin);
+  novo->nome[strcspn(novo->nome, "\n")] = '\0';
 
   printf("Insira seu CPF (xxx.xxx.xxx-xx): \n");
   fgets(novo->cpf, MAX_LEN_CPF, stdin);
@@ -140,23 +138,22 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
     free(novo);
     return clientes;
   }
-	
-	printf("Insira sua data de nascimento (DD/MM/YYYY): \n" );
-	fgets(novo->data_nascimento, MAX_LEN_NASC, stdin);
-	novo->data_nascimento[strcspn(novo->data_nascimento, "\n")] = '\0';
 
-	printf("Insira seu telefone (DDD)XXXX-XXXX: \n");
-	fgets(novo->telefone, MAX_LEN_TEL, stdin);
-	
-	novo->telefone[strcspn(novo->telefone, "\n")] = '\0';
-	printf("Insira seu email: \n");
-	fgets(novo->email, MAX_LEN_EMAIL, stdin);
-	novo->email[strcspn(novo->email, "\n")] = '\0';
+  printf("Insira sua data de nascimento (DD/MM/YYYY): ");
+  fgets(novo->data_nascimento, MAX_LEN_NASC, stdin);
+  novo->data_nascimento[strcspn(novo->data_nascimento, "\n")] = '\0';
 
-	novo->meu_carrinho = NULL;
-	novo->prox = clientes;
+  printf("Insira seu telefone (DDD)XXXX-XXXX: ");
+  fgets(novo->telefone, MAX_LEN_TEL, stdin);
 
-	printf("Cliente Cadastrado!\n");
-	return novo;
+  novo->telefone[strcspn(novo->telefone, "\n")] = '\0';
+  printf("Insira seu email: ");
+  fgets(novo->email, MAX_LEN_EMAIL, stdin);
+  novo->email[strcspn(novo->email, "\n")] = '\0';
+
+  novo->meu_carrinho = NULL;
+  novo->prox = clientes;
+
+  printf("Cliente Cadastrado!\n");
+  return novo;
 }
-
