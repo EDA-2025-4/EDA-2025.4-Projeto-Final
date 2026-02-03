@@ -43,12 +43,15 @@ struct carrinho {
 Cliente *cadastrar_cliente(Cliente *clientes);
 void listar_cliente(const Cliente *clientes);
 Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
-Cliente *editar_cliente(Cliente *clientes, char cpf_cliente[]);
-Cliente *remover_cliente(Cliente *clientes, char cpf_cliente[]);
+Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
+Cliente *remover_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
 
 Produto *cadatrar_produto(Produto *estoque);
-Produto listar_produto (const Produto *estoque);
+void listar_produto (const Produto *estoque);
 Produto *buscar_produto_codigo (Produto *estoque, int codigo_produto);
-Produto *editar_produto (Produto *estoque, int codigo_produto);
-Produto *remover_produto (Produto *estoque, int codigo_produto);
+Produto *editar_produto_codigo(Produto *estoque, int codigo_produto);
+Produto *remover_produto_codigo(Produto *estoque, int codigo_produto);
 
+Carrinho *incluir_produto (Carrinho *carrinho_cliente, Produto *estoque, int codigo_produto_carrinho, int quantidade_produtos_carrinho);
+void listar_produtos_carrinho (const Carrinho *carrinho_cliente, char cpf_cliente_carrinho[]);
+Carrinho *remover_carrinho (Carrinho *carrinho_cliente, int codigo_produto, char cpf_cliente_carrinho[]);
