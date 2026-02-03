@@ -168,26 +168,26 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
   }
 
   printf("\n-----CADASTRAR CLIENTE-----\n");
-  printf("Insira seu Nome: \n");
+  printf("Insira seu Nome: ");
   fgets(novo->nome, MAX_LEN_NOME, stdin);
   novo->nome[strcspn(novo->nome, "\n")] = '\0';
 
-  printf("\nInsira seu CPF (xxx.xxx.xxx-xx): \n");
+  printf("\nInsira seu CPF (xxx.xxx.xxx-xx): ");
   fgets(novo->cpf, MAX_LEN_CPF, stdin);
   novo->cpf[strcspn(novo->cpf, "\n")] = '\0';
 
   if (buscar_cliente_cpf(clientes, novo->cpf) != NULL) {
     printf("\nCliente ja Cadastrado");
-    printf("\nSelecione a teclar ENTER para voltar ao menu\n");
+    printf("\nSelecione a teclar ENTER para voltar ao menu");
     free(novo);
     return clientes;
   }
 
-  printf("\nInsira sua data de nascimento (DD/MM/YYYY): \n");
+  printf("\nInsira sua data de nascimento (DD/MM/YYYY): ");
   fgets(novo->data_nascimento, MAX_LEN_NASC, stdin);
   novo->data_nascimento[strcspn(novo->data_nascimento, "\n")] = '\0';
 
-  printf("\nInsira seu telefone (DDD)XXXX-XXXX: \n");
+  printf("\nInsira seu telefone (DDD)XXXX-XXXX: ");
   fgets(novo->telefone, MAX_LEN_TEL, stdin);
 
   novo->telefone[strcspn(novo->telefone, "\n")] = '\0';
