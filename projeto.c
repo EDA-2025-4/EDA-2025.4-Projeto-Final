@@ -112,3 +112,25 @@ int main(void) {
   } while (opcao_menu != 0);
   return 0;
 }
+
+Cliente *cadastrar_cliente(Cliente *clientes) {
+  Cliente *novo = (Cliente *)malloc(sizeof(Cliente));
+  if (novo == NULL) {
+    printf("ERRO! MEMORIA INSUFICIENTE!\n");
+    printf("\nSelecione a teclar ENTER para voltar ao menu\n");
+    getchar();
+    return clientes;
+  }
+
+  printf("\n-----CADASTRAR CLIENTE-----");
+  printf("Insira CPF: ");
+  fgets(novo->cpf, MAX_LEN_CPF, stdin);
+  novo->cpf[strcspn(novo->cpf, "\n")] = '\0';
+
+  if (buscar_cliente_cpf(clientes, novo->cpf) != NULL) {
+    printf("\nCliente ja Cadastrado");
+    printf("\nSelecione a teclar ENTER para voltar ao menu\n");
+    free(novo);
+    return clientes;
+  }
+}
