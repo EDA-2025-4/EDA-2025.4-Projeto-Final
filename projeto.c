@@ -110,7 +110,7 @@ int main(void) {
       printf("\n");
       break;
     }
-  } while (opcao_menu != 0);
+  } while (opcao_menu > 0 && opcao_menu < 4);
   return 0;
 }
 
@@ -119,10 +119,36 @@ Cliente *menu_cliente(Cliente *clientes){
 	do{
 		printf("-----Gerenciamento De Clientes------\n");
 		printf("1 - Cadastrar Cliente\n");
-		printf("1 - Cadastrar Cliente\n");
-		printf("1 - Cadastrar Cliente\n");
-		printf("1 - Cadastrar Cliente\n");
-	}
+		printf("2 - Listar Clientes\n");
+		printf("3 - Buscar Cliente\n");
+		printf("4 - Editar Cliente\n");
+		printf("5 - Remover Cliente\n");
+		printf("0 - Voltar ao Menu Principal\n");
+		scanf(" %d", &opcao_menu);
+
+		switch(opcao_menu){
+			case 1 :
+			clientes = cadastrar_cliente(clientes);
+			break;
+			
+			case 2 :
+			listar_cliente(clientes);
+			break;
+
+			case 3 :
+			break;
+
+			case 4 :
+			break;
+
+			case 5 :
+			break;
+
+			case 0 :
+			break;
+		}
+
+	}while(opcao_menu < 0 && opcao_menu < 5);
 
 }
 
