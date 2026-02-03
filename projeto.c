@@ -1,6 +1,6 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 
 #define MAX_LEN_NOME 100
@@ -18,10 +18,9 @@ struct cliente {
   char email[MAX_LEN_EMAIL];
   char data_nascimento[MAX_LEN_NASC];
 
-	Carrinho *meu_carrinho;
-	Cliente *prox;
+  Carrinho *meu_carrinho;
+  Cliente *prox;
 };
-
 
 struct produto {
   int codigo;
@@ -29,21 +28,27 @@ struct produto {
   float preco;
   int quantidade;
 
-	Produto *prox;
+  Produto *prox;
 };
 
 struct carrinho {
-	int cod_unico;
-	char nome_produto [MAX_LEN_NOME];
-	float preco_produto;
-	int quantidade_produto;
+  int cod_unico;
+  char nome_produto[MAX_LEN_NOME];
+  float preco_produto;
+  int quantidade_produto;
 
-	Carrinho *prox;
+  Carrinho *prox;
 };
 
-Cliente *cadastrar_cliente (Cliente *clientes);
-void *listar_cliente (Cliente *clientes);
-Cliente *buscar_cliente_cpf (Cliente *clientes, char cpf_cliente[]);
-Cliente *editar_cliente (Cliente *clientes, char cpf_cliente[]);
-Cliente *remover_cliente (Cliente *clientes, char cpf_cliente[]);
+Cliente *cadastrar_cliente(Cliente *clientes);
+void listar_cliente(const Cliente *clientes);
+Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
+Cliente *editar_cliente(Cliente *clientes, char cpf_cliente[]);
+Cliente *remover_cliente(Cliente *clientes, char cpf_cliente[]);
+
+Produto *cadatrar_produto(Produto *estoque);
+Produto listar_produto (const Produto *estoque);
+Produto *buscar_produto_codigo (Produto *estoque, int codigo_produto);
+Produto *editar_produto (Produto *estoque, int codigo_produto);
+Produto *remover_produto (Produto *estoque, int codigo_produto);
 
