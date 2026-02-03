@@ -65,30 +65,42 @@ Produto *menu_produto(Produto *estoque);
 void modo_compra(Cliente *clientes, Produto *estoque);
 
 int main(void) {
-	Cliente *clientes = NULL;
-	Produto *produtos = NULL;
+  Cliente *clientes = NULL;
+  Produto *produtos = NULL;
   int opcao_menu;
 
-  printf("-----Menu Principal-----\n");
-  printf("1 - Gerenciamento de Cliente\n");
-  printf("2 - Gerenciamento de Produtos\n");
-  printf("3 - Modo de Compra\n");
-  printf("0 - Sair\n");
-  printf("Escolha uma Opcao: ");
-  scanf("%d", &opcao_menu);
-  do {
-    switch (opcao_menu){
-			case 1 :
-		clientes = menu_cliente (clientes);
-            break;
+  for (;;) {
+    printf("-----Menu Principal-----\n");
+    printf("1 - Gerenciamento de Cliente\n");
+    printf("2 - Gerenciamento de Produtos\n");
+    printf("3 - Modo de Compra\n");
+    printf("0 - Sair\n");
+    printf("Escolha uma Opcao: ");
+    scanf("%d", &opcao_menu);
+    do {
+      switch (opcao_menu) {
+      case 1:
+        clientes = menu_cliente(clientes);
+        break;
 
-            case 2 :
-		produtos = menu_produto (produtos);
-            break;
+      case 2:
+        produtos = menu_produto(produtos);
+        break;
 
-	    case 3 :
-	    modo_compra (clientes, produtos);
+      case 3:
+        if (clientes == NULL || produtos == NULL) {
+          printf("Produtos e/ou Clientes Nao Disponiveis\n");
+        } else {
+          modo_compra(clientes, produtos);
+          break;
+					}
+
+        default:
+          printf("Opcao Invalida");
+          break;
+        }
+        while (opcao_menu != 0);
 		}
-  } while (opcao_menu != 0);
-  return 0;
-}
+      }
+      return 0;
+    }
