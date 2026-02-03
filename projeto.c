@@ -82,8 +82,6 @@ int main(void) {
       ;
     switch (opcao_menu) {
     case 1:
-      printf("\nMenu Cliente\n");
-      printf("\n");
       clientes = menu_cliente(clientes);
       break;
 
@@ -117,7 +115,7 @@ int main(void) {
 Cliente *menu_cliente(Cliente *clientes) {
   int opcao_menu;
   do {
-    printf("-----Gerenciamento De Clientes------\n");
+    printf("\n-----Gerenciamento De Clientes------\n");
     printf("1 - Cadastrar Cliente\n");
     printf("2 - Listar Clientes\n");
     printf("3 - Buscar Cliente\n");
@@ -167,12 +165,12 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
     return clientes;
   }
 
-  printf("\n-----CADASTRAR CLIENTE-----");
-  printf("Insira seu Nome: ");
+  printf("\n-----CADASTRAR CLIENTE-----\n");
+  printf("Insira seu Nome: \n");
   fgets(novo->nome, MAX_LEN_NOME, stdin);
   novo->nome[strcspn(novo->nome, "\n")] = '\0';
 
-  printf("Insira seu CPF (xxx.xxx.xxx-xx): \n");
+  printf("\nInsira seu CPF (xxx.xxx.xxx-xx): \n");
   fgets(novo->cpf, MAX_LEN_CPF, stdin);
   novo->cpf[strcspn(novo->cpf, "\n")] = '\0';
 
@@ -183,22 +181,22 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
     return clientes;
   }
 
-  printf("Insira sua data de nascimento (DD/MM/YYYY): ");
+  printf("\nInsira sua data de nascimento (DD/MM/YYYY): \n");
   fgets(novo->data_nascimento, MAX_LEN_NASC, stdin);
   novo->data_nascimento[strcspn(novo->data_nascimento, "\n")] = '\0';
 
-  printf("Insira seu telefone (DDD)XXXX-XXXX: ");
+  printf("\nInsira seu telefone (DDD)XXXX-XXXX: \n");
   fgets(novo->telefone, MAX_LEN_TEL, stdin);
 
   novo->telefone[strcspn(novo->telefone, "\n")] = '\0';
-  printf("Insira seu email: ");
+  printf("\nInsira seu email: \n");
   fgets(novo->email, MAX_LEN_EMAIL, stdin);
   novo->email[strcspn(novo->email, "\n")] = '\0';
 
   novo->meu_carrinho = NULL;
   novo->prox = clientes;
 
-  printf("Cliente Cadastrado!\n");
+  printf("\nCliente Cadastrado!\n");
   return novo;
 }
 
@@ -206,7 +204,7 @@ void listar_cliente(const Cliente *clientes) {
   const Cliente *cliente_lista = clientes;
 
   while (cliente_lista == NULL) {
-    printf("SEM REGISTRO DE CLIENTES\n");
+    printf("\nSEM REGISTRO DE CLIENTES\n");
     printf("Selecione a tecla ENTER para voltar ao menu");
     getchar();
     return;
@@ -226,4 +224,4 @@ void listar_cliente(const Cliente *clientes) {
   return;
 }
 
-/*Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {}*/
+Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {}
