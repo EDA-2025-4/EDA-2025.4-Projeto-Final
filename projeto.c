@@ -40,3 +40,10 @@ struct carrinho {
 
 	Carrinho *prox;
 };
+
+Cliente *cadastrar_cliente (Cliente *clientes);
+void *listar_cliente (Cliente *clientes);
+Cliente *buscar_cliente_cpf (Cliente *clientes, char cpf_cliente[]);
+Cliente *editar_cliente (Cliente *clientes, char cpf_cliente[]);
+Cliente *remover_cliente (Cliente *clientes, char cpf_cliente[]);
+
