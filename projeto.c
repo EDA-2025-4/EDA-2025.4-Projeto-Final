@@ -25,9 +25,18 @@ struct cliente {
 
 struct produto {
   int codigo;
-  char nome_produto[MAX_LEN_NOME];
+  char nome_prod[MAX_LEN_NOME];
   float preco;
   int quantidade;
 
 	Produto *prox;
+};
+
+struct carrinho {
+	int cod_unico;
+	char nome_produto [MAX_LEN_NOME];
+	float preco_produto;
+	int quantidade_produto;
+
+	Carrinho *prox;
 };
