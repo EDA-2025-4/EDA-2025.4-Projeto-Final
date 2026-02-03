@@ -84,7 +84,7 @@ int main(void) {
     case 1:
       printf("\nMenu Cliente\n");
       printf("\n");
-      // clientes = menu_cliente(clientes);
+      clientes = menu_cliente(clientes);
       break;
 
     case 2:
@@ -114,44 +114,48 @@ int main(void) {
   return 0;
 }
 
-Cliente *menu_cliente(Cliente *clientes){
-	int opcao_menu;
-	do{
-		printf("-----Gerenciamento De Clientes------\n");
-		printf("1 - Cadastrar Cliente\n");
-		printf("2 - Listar Clientes\n");
-		printf("3 - Buscar Cliente\n");
-		printf("4 - Editar Cliente\n");
-		printf("5 - Remover Cliente\n");
-		printf("0 - Voltar ao Menu Principal\n");
-		scanf(" %d", &opcao_menu);
+Cliente *menu_cliente(Cliente *clientes) {
+  int opcao_menu;
+  do {
+    printf("-----Gerenciamento De Clientes------\n");
+    printf("1 - Cadastrar Cliente\n");
+    printf("2 - Listar Clientes\n");
+    printf("3 - Buscar Cliente\n");
+    printf("4 - Editar Cliente\n");
+    printf("5 - Remover Cliente\n");
+    printf("0 - Voltar ao Menu Principal\n");
+    scanf(" %d", &opcao_menu);
 
-		switch(opcao_menu){
-			case 1 :
-			clientes = cadastrar_cliente(clientes);
-			break;
-			
-			case 2 :
-			listar_cliente(clientes);
-			break;
+    switch (opcao_menu) {
+    case 1:
+      clientes = cadastrar_cliente(clientes);
+      break;
 
-			case 3 :
-			break;
+    case 2:
+      listar_cliente(clientes);
+      break;
 
-			case 4 :
-			break;
+    case 3:
+      break;
 
-			case 5 :
-			break;
+    case 4:
+      break;
 
-			case 0 :
-			break;
-		}
+    case 5:
+      break;
 
-	}while(opcao_menu < 0 && opcao_menu < 5);
+    case 0:
+      break;
 
+    default:
+      printf("\nOpcao Invalida\n");
+      printf("\n");
+    }
+
+  } while (opcao_menu < 0 && opcao_menu < 5);
+
+  return clientes;
 }
-
 
 Cliente *cadastrar_cliente(Cliente *clientes) {
   Cliente *novo = (Cliente *)malloc(sizeof(Cliente));
