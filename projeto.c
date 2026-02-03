@@ -92,8 +92,8 @@ int main(void) {
 					break;
         } else {
           modo_compra(clientes, produtos);
-          break;
 					}
+			break;
 
         default:
           printf("Opcao Invalida");
