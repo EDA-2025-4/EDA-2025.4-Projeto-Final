@@ -124,6 +124,7 @@ Cliente *menu_cliente(Cliente *clientes) {
     printf("4 - Editar Cliente\n");
     printf("5 - Remover Cliente\n");
     printf("0 - Voltar ao Menu Principal\n");
+    printf("Escolha uma Opcao: ");
     scanf(" %d", &opcao_menu);
 
     switch (opcao_menu) {
@@ -225,4 +226,4 @@ void listar_cliente(const Cliente *clientes) {
   return;
 }
 
-Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {}
+/*Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {}*/
