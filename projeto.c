@@ -81,10 +81,12 @@ int main(void) {
       ;
     switch (opcao_menu) {
     case 1:
+			printf("Menu Cliente\n");
       // clientes = menu_cliente(clientes);
       break;
 
     case 2:
+				printf("Menu Produto");
       // produtos = menu_produto(produtos);
       break;
 
