@@ -226,4 +226,9 @@ void listar_cliente(const Cliente *clientes) {
   return;
 }
 
-Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {}
+Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
+  Cliente *buscar_cliente = clientes;
+  while(buscar_cliente != NULL){
+		
+	}
+}
