@@ -7,6 +7,7 @@
 #define MAX_LEN_CPF 20
 #define MAX_LEN_EMAIL 100
 #define MAX_LEN_NASC 20
+#define MAX_LEN_TEL 20
 
 typedef struct cliente Cliente;
 typedef struct produto Produto;
@@ -15,6 +16,7 @@ typedef struct carrinho Carrinho;
 struct cliente {
   char nome[MAX_LEN_NOME];
   char cpf[MAX_LEN_CPF];
+	char telefone [MAX_LEN_TEL];
   char email[MAX_LEN_EMAIL];
   char data_nascimento[MAX_LEN_NASC];
 
@@ -143,10 +145,18 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
 	fgets(novo->data_nascimento, MAX_LEN_NASC, stdin);
 	novo->data_nascimento[strcspn(novo->data_nascimento, "\n")] = '\0';
 
+	printf("Insira seu telefone (DDD)XXXX-XXXX: \n");
+	fgets(novo->telefone, MAX_LEN_TEL, stdin);
+	
+	novo->telefone[strcspn(novo->telefone, "\n")] = '\0';
 	printf("Insira seu email: \n");
 	fgets(novo->email, MAX_LEN_EMAIL, stdin);
 	novo->email[strcspn(novo->email, "\n")] = '\0';
 
+	novo->meu_carrinho = NULL;
+	novo->prox = clientes;
 
+	printf("Cliente Cadastrado!\n");
+	return novo;
 }
 
