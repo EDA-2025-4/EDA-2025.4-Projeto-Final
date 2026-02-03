@@ -128,7 +128,7 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
 	novo->nome[strcspn(novo->nome, "\n")]= '\0';
 	
 
-  printf("Insira seu CPF: \n");
+  printf("Insira seu CPF (xxx.xxx.xxx-xx): \n");
   fgets(novo->cpf, MAX_LEN_CPF, stdin);
   novo->cpf[strcspn(novo->cpf, "\n")] = '\0';
 
@@ -139,9 +139,14 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
     return clientes;
   }
 	
-	printf("Insira sua data de nascimento (DD/MM/YYYY): " );
+	printf("Insira sua data de nascimento (DD/MM/YYYY): \n" );
 	fgets(novo->data_nascimento, MAX_LEN_NASC, stdin);
 	novo->data_nascimento[strcspn(novo->data_nascimento, "\n")] = '\0';
+
+	printf("Insira seu email: \n");
+	fgets(novo->email, MAX_LEN_EMAIL, stdin);
+	novo->email[strcspn(novo->email, "\n")] = '\0';
+
 
 }
 
