@@ -108,7 +108,7 @@ int main(void) {
       printf("\n");
       break;
     }
-  } while (opcao_menu > 0 && opcao_menu < 4);
+  } while (opcao_menu != 0);
   return 0;
 }
 
@@ -151,7 +151,7 @@ Cliente *menu_cliente(Cliente *clientes) {
       printf("\n");
     }
 
-  } while (opcao_menu < 0 && opcao_menu < 5);
+  } while (opcao_menu != 0);
 
   return clientes;
 }
@@ -203,7 +203,7 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
 void listar_cliente(const Cliente *clientes) {
   const Cliente *cliente_lista = clientes;
 
-  while (cliente_lista == NULL) {
+  if (cliente_lista == NULL) {
     printf("\nSEM REGISTRO DE CLIENTES\n");
     printf("Selecione a tecla ENTER para voltar ao menu");
     getchar();
