@@ -157,3 +157,29 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
   printf("Cliente Cadastrado!\n");
   return novo;
 }
+
+void listar_cliente(const Cliente *clientes) {
+  const Cliente *cliente_lista = clientes;
+
+  while (cliente_lista == NULL) {
+    printf("SEM REGISTRO DE CLIENTES\n");
+    printf("Selecione a tecla ENTER para voltar ao menu");
+    return;
+  }
+  printf("-----LISTA DE CLIENTES-----\n");
+  while (cliente_lista != NULL) {
+    printf("Nome: %s\n", cliente_lista->nome);
+    printf("CPF: %s\n", cliente_lista->cpf);
+    printf("Data de Nascimento: %s\n", cliente_lista->data_nascimento);
+    printf("Telefone: %s\n", cliente_lista->telefone);
+    printf("Email: %s\n", cliente_lista->email);
+
+    cliente_lista = cliente_lista->prox;
+  }
+  printf("Selecione a tecla ENTER para voltar ao menu");
+  getchar();
+  return;
+}
+
+Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
+}
