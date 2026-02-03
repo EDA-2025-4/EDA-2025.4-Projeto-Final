@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -228,7 +229,16 @@ void listar_cliente(const Cliente *clientes) {
 
 Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
   Cliente *buscar_cliente = clientes;
-  while(buscar_cliente != NULL){
-		
-	}
+  bool iguais = false;
+  while (buscar_cliente != NULL) {
+    int comp = strcmp(buscar_cliente->cpf, cpf_cliente);
+    if (comp == 0) {
+      iguais = true;
+      break;
+    }
+    buscar_cliente = buscar_cliente->prox;
+  }
+
+  printf(iguais ? "CPF Encontrado!" : "CPF Nao Encontrado!");
+  return (iguais) ? buscar_cliente : NULL;
 }
