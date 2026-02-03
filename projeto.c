@@ -47,11 +47,40 @@ Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
 Cliente *remover_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
 
 Produto *cadatrar_produto(Produto *estoque);
-void listar_produto (const Produto *estoque);
-Produto *buscar_produto_codigo (Produto *estoque, int codigo_produto);
+void listar_produto(const Produto *estoque);
+Produto *buscar_produto_codigo(Produto *estoque, int codigo_produto);
 Produto *editar_produto_codigo(Produto *estoque, int codigo_produto);
 Produto *remover_produto_codigo(Produto *estoque, int codigo_produto);
 
-Carrinho *incluir_produto (Carrinho *carrinho_cliente, Produto *estoque, int codigo_produto_carrinho, int quantidade_produtos_carrinho);
-void listar_produtos_carrinho (const Carrinho *carrinho_cliente, char cpf_cliente_carrinho[]);
-Carrinho *remover_carrinho (Carrinho *carrinho_cliente, int codigo_produto, char cpf_cliente_carrinho[]);
+Carrinho *incluir_produto(Carrinho *carrinho_cliente, Produto *estoque,
+                          int codigo_produto_carrinho,
+                          int quantidade_produtos_carrinho);
+void listar_produtos_carrinho(const Carrinho *carrinho_cliente,
+                              char cpf_cliente_carrinho[]);
+Carrinho *remover_carrinho(Carrinho *carrinho_cliente, int codigo_produto,
+                           char cpf_cliente_carrinho[]);
+
+Cliente *menu_cliente (Cliente *clientes);
+Cliente *menu_produto (Cliente *estoque);
+void modo_compra (Cliente *clientes, Produto *estoque);
+
+int main(void) {
+  int opcao_menu;
+
+	printf("-----Menu Principal-----");
+	printf("1 - Gerenciamento de Cliente");
+	printf("2 - Gerenciamento de Produtos");
+	printf("3 - Modo de Compra");
+	printf("0 - Sair");
+  printf("Escolha uma Opcao: \n");
+  scanf("%d", &opcao_menu);
+  do {
+    switch (case 1 :
+		
+            break;
+
+            case 2 :
+
+            break;
+  } while (opcao_menu != 0);
+}
