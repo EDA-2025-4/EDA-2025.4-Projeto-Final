@@ -61,10 +61,12 @@ Carrinho *remover_carrinho(Carrinho *carrinho_cliente, int codigo_produto,
                            char cpf_cliente_carrinho[]);
 
 Cliente *menu_cliente(Cliente *clientes);
-Produto *menu_produto(Cliente *estoque);
+Produto *menu_produto(Produto *estoque);
 void modo_compra(Cliente *clientes, Produto *estoque);
 
 int main(void) {
+	Cliente *clientes = NULL;
+	Produto *produtos = NULL;
   int opcao_menu;
 
   printf("-----Menu Principal-----\n");
@@ -74,14 +76,19 @@ int main(void) {
   printf("0 - Sair\n");
   printf("Escolha uma Opcao: ");
   scanf("%d", &opcao_menu);
-  /*do {
-    switch (case 1 :
-
+  do {
+    switch (opcao_menu){
+			case 1 :
+		clientes = menu_cliente (clientes);
             break;
 
             case 2 :
-
+		produtos = menu_produto (produtos);
             break;
-  } while (opcao_menu != 0);*/
+
+	    case 3 :
+	    modo_compra (clientes, produtos);
+		}
+  } while (opcao_menu != 0);
   return 0;
 }
