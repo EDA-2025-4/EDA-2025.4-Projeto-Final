@@ -65,6 +65,7 @@ Carrinho *remover_carrinho(Carrinho *carrinho_cliente, int codigo_produto,
 Cliente *menu_cliente(Cliente *clientes);
 Produto *menu_produto(Produto *estoque);
 void modo_compra(Cliente *clientes, Produto *estoque);
+void buscar_cliente(Cliente *clientes);
 
 int main(void) {
   Cliente *clientes = NULL;
@@ -138,10 +139,10 @@ Cliente *menu_cliente(Cliente *clientes) {
       listar_cliente(clientes);
       break;
 
-    case 3:
+    case 3: {
       Cliente *encontrado;
-      buscar_cliente_cpf(clientes, cpf_buscar);
-      break;
+      encontrado = buscar_cliente_cpf(clientes, cpf_buscar);
+    } break;
 
     case 4:
       break;
@@ -228,6 +229,16 @@ void listar_cliente(const Cliente *clientes) {
   printf("Selecione a tecla ENTER para voltar ao menu");
   getchar();
   return;
+}
+
+void buscar_cliente(Cliente *clientes){
+	char cpf_busca [MAX_LEN_CPF];
+	printf("Digite o CPF do Cliente (xxx.xxx.xxx-xx): ");
+	fgets(cpf_busca, MAX_LEN_CPF, stdin);
+	cpf_busca [strcspn(cpf_busca, "\n")] = '\0';
+
+	Cliente *encontrado = b
+
 }
 
 Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
