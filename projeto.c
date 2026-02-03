@@ -77,9 +77,7 @@ int main(void) {
     printf("0 - Sair\n");
     printf("Escolha uma Opcao: ");
     scanf("%d", &opcao_menu);
-    while (getchar() != 'n') {
-      return -1;
-    };
+    while (getchar() != 'n'); 
     /*switch (opcao_menu) {
     case 1:
       clientes = menu_cliente(clientes);
