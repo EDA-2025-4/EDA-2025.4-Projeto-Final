@@ -138,9 +138,10 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
     free(novo);
     return clientes;
   }
-	printf("Insira seu Nome: ");
-	fgets(novo->nome, MAX_LEN_NOME)
 	
-	printf("Insira ")
+	printf("Insira sua data de nascimento (DD/MM/YYYY): " );
+	fgets(novo->data_nascimento, MAX_LEN_NASC, stdin);
+	novo->data_nascimento[strcspn(novo->data_nascimento, "\n")] = '\0';
+
 }
 
