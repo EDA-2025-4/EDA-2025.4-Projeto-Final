@@ -191,7 +191,7 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
   fgets(novo->telefone, MAX_LEN_TEL, stdin);
 
   novo->telefone[strcspn(novo->telefone, "\n")] = '\0';
-  printf("\nInsira seu email: \n");
+  printf("\nInsira seu email: ");
   fgets(novo->email, MAX_LEN_EMAIL, stdin);
   novo->email[strcspn(novo->email, "\n")] = '\0';
 
