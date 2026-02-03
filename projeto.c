@@ -61,7 +61,7 @@ Carrinho *remover_carrinho(Carrinho *carrinho_cliente, int codigo_produto,
                            char cpf_cliente_carrinho[]);
 
 Cliente *menu_cliente(Cliente *clientes);
-Cliente *menu_produto(Cliente *estoque);
+Produto *menu_produto(Cliente *estoque);
 void modo_compra(Cliente *clientes, Produto *estoque);
 
 int main(void) {
