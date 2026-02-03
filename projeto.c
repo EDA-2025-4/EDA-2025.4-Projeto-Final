@@ -123,7 +123,12 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
   }
 
   printf("\n-----CADASTRAR CLIENTE-----");
-  printf("Insira CPF: ");
+	printf("Insira seu Nome: \n");
+	fgets(novo->nome, MAX_LEN_NOME, stdin);
+	novo->nome[strcspn(novo->nome, "\n")]= '\0';
+	
+
+  printf("Insira seu CPF: \n");
   fgets(novo->cpf, MAX_LEN_CPF, stdin);
   novo->cpf[strcspn(novo->cpf, "\n")] = '\0';
 
@@ -133,4 +138,9 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
     free(novo);
     return clientes;
   }
+	printf("Insira seu Nome: ");
+	fgets(novo->nome, MAX_LEN_NOME)
+	
+	printf("Insira ")
 }
+
