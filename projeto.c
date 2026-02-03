@@ -248,24 +248,25 @@ void buscar_cliente(Cliente *clientes) {
     printf("Data de Nascimento: %s\n", encontrado->data_nascimento);
     printf("Telefone: %s\n", encontrado->telefone);
     printf("Email: %s\n", encontrado->email);
+  } else {
+    printf("CPF NAO ENCONTRADO!");
   }
   printf("\n");
   printf("\nSelecione ENTER para voltar ao menu");
   getchar();
+
+  return;
 }
 
 Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
   Cliente *buscar_cliente = clientes;
-  bool iguais = false;
   while (buscar_cliente != NULL) {
     int comp = strcmp(buscar_cliente->cpf, cpf_cliente);
     if (comp == 0) {
-      iguais = true;
-      break;
+      return buscar_cliente;
     }
     buscar_cliente = buscar_cliente->prox;
   }
 
-  printf(iguais ? "CPF Encontrado!\n" : "CPF Nao Encontrado!\n");
-  return (iguais) ? buscar_cliente : NULL;
+  return NULL;
 }
