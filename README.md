@@ -18,3 +18,12 @@ O objetivo deste trabalho é desenvolver um sistema na linguagem **C** que utili
 * **Matrícula:** 242005383
 
 ---
+
+##  Funcionalidades
+
+*   Gerenciamento de Clientes
+*   Geremciamento de Produtos
+*   Modo Compra
+
+---
+
