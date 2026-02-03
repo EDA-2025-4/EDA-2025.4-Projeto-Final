@@ -114,6 +114,19 @@ int main(void) {
   return 0;
 }
 
+Cliente *menu_cliente(Cliente *clientes){
+	int opcao_menu;
+	do{
+		printf("-----Gerenciamento De Clientes------\n");
+		printf("1 - Cadastrar Cliente\n");
+		printf("1 - Cadastrar Cliente\n");
+		printf("1 - Cadastrar Cliente\n");
+		printf("1 - Cadastrar Cliente\n");
+	}
+
+}
+
+
 Cliente *cadastrar_cliente(Cliente *clientes) {
   Cliente *novo = (Cliente *)malloc(sizeof(Cliente));
   if (novo == NULL) {
@@ -164,6 +177,7 @@ void listar_cliente(const Cliente *clientes) {
   while (cliente_lista == NULL) {
     printf("SEM REGISTRO DE CLIENTES\n");
     printf("Selecione a tecla ENTER para voltar ao menu");
+    getchar();
     return;
   }
   printf("-----LISTA DE CLIENTES-----\n");
@@ -181,5 +195,4 @@ void listar_cliente(const Cliente *clientes) {
   return;
 }
 
-Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
-}
+Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {}
