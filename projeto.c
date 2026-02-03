@@ -115,6 +115,7 @@ int main(void) {
 
 Cliente *menu_cliente(Cliente *clientes) {
   int opcao_menu;
+  char cpf_buscar[MAX_LEN_CPF];
   do {
     printf("\n-----Gerenciamento De Clientes------\n");
     printf("1 - Cadastrar Cliente\n");
@@ -138,6 +139,8 @@ Cliente *menu_cliente(Cliente *clientes) {
       break;
 
     case 3:
+      Cliente *encontrado;
+      buscar_cliente_cpf(clientes, cpf_buscar);
       break;
 
     case 4:
