@@ -45,13 +45,13 @@ struct carrinho {
 Cliente *cadastrar_cliente(Cliente *clientes);
 void listar_cliente(const Cliente *clientes);
 Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
-Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
+Cliente *editar_cliente_cpf(Cliente *clientes);
 Cliente *remover_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
 
 Produto *cadatrar_produto(Produto *estoque);
 void listar_produto(const Produto *estoque);
 Produto *buscar_produto_codigo(Produto *estoque, int codigo_produto);
-Produto *editar_produto_codigo(Produto *estoque, int codigo_produto);
+Produto *editar_produto_codigo(Produto *estoque);
 Produto *remover_produto_codigo(Produto *estoque, int codigo_produto);
 
 Carrinho *incluir_produto(Carrinho *carrinho_cliente, Produto *estoque,
@@ -142,6 +142,7 @@ Cliente *menu_cliente(Cliente *clientes) {
     } break;
 
     case 4:
+				editar_cliente_cpf (clientes, );
       break;
 
     case 5:
@@ -271,7 +272,8 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
 
   return NULL;
 }
-Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
+Cliente *editar_cliente_cpf(Cliente *clientes) {
+	char cpf_cliente [MAX_LEN_CPF];
   printf("P.S: Caso queira retornar ao menu digite 0\n");
   printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
   fgets(cpf_cliente, MAX_LEN_CPF, stdin);
@@ -369,6 +371,9 @@ Produto *menu_produto(Produto *estoque) {
 	break;
 		case 3:
 		buscar_produto(estoque);
+			break;
+		case 4:
+			editar_produto_codigo(estoque);
 			break;
     }
   } while (estoque != NULL);
