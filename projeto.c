@@ -52,9 +52,13 @@ void listar_produto(const Produto *estoque);
 Produto *buscar_produto_codigo(Produto *estoque, int codigo_produto);
 Produto *editar_produto_codigo(Produto *estoque);
 Produto *remover_produto_codigo(Produto *estoque);
-Carrinho *incluir_produto(Carrinho carrinho_cliente, Produto estoque, int codigo_produto_carrinho, int quantidade_produtos_carrinho);
-void listar_produtos_carrinho(const Carrinho carrinho_cliente, char nome_cliente[]);
-Carrinho *remover_carrinho(Carrinho carrinho_cliente, int codigo_produto, Produto *estoque);
+Carrinho *incluir_produto(Carrinho *carrinho_cliente, Produto *estoque,
+                          int codigo_produto_carrinho,
+                          int quantidade_produtos_carrinho);
+void listar_produtos_carrinho(const Carrinho *carrinho_cliente,
+                              char nome_cliente[]);
+Carrinho *remover_carrinho(Carrinho *carrinho_cliente, int codigo_produto,
+                           Produto *estoque);
 
 Cliente *menu_cliente(Cliente *clientes);
 Produto *menu_produto(Produto *estoque);
@@ -62,7 +66,7 @@ void modo_compra(Cliente *clientes, Produto *estoque);
 void buscar_cliente(Cliente *clientes);
 void buscar_produto(Produto *estoque);
 
-int main(void) { 
+int main(void) {
   Cliente *clientes = NULL;
   Produto *produtos = NULL;
   int opcao_menu;
@@ -91,7 +95,7 @@ int main(void) {
         printf("\nProdutos e/ou Clientes Nao Disponiveis\n");
         printf("\n");
       } else {
-         modo_compra(clientes, produtos);
+        modo_compra(clientes, produtos);
       }
       break;
 
@@ -647,89 +651,104 @@ Produto *remover_produto_codigo(Produto *estoque) {
   return estoque;
 }
 
-void modo_compra(Cliente clientes, Produtoestoque) {
-    char cpf_b[MAX_LEN_CPF];
-    int opc;
+void modo_compra(Cliente *clientes, Produto *estoque) {
+  char cpf_b[MAX_LEN_CPF];
+  int opc;
 
-    printf("\n--- MODO DE COMPRA ---");
-    printf("\nCPF do Cliente (xxx.xxx.xxx-xx): ");
-    fgets(cpf_b, MAX_LEN_CPF, stdin);
-    cpf_b[strcspn(cpf_b, "\n")] = '\0';
+  printf("\n--- MODO DE COMPRA ---");
+  printf("\nCPF do Cliente (xxx.xxx.xxx-xx): ");
+  fgets(cpf_b, MAX_LEN_CPF, stdin);
+  cpf_b[strcspn(cpf_b, "\n")] = '\0';
 
-    Cliente *c = buscar_cliente_cpf(clientes, cpf_b);
+  Cliente *c = buscar_cliente_cpf(clientes, cpf_b);
 
-    if (c == NULL) {
-        printf("\n!!! Cliente NAO encontrado !!!\n");
-        printf("Pressione ENTER para voltar...");
-        getchar();
-        return;
+  if (c == NULL) {
+    printf("\n!!! Cliente NAO encontrado !!!\n");
+    printf("Pressione ENTER para voltar...");
+    getchar();
+    return;
+  }
+
+  do {
+    printf("\nCliente: %s", c->nome);
+    printf("\n1 - Adicionar Produto");
+    printf(" | 2 - Listar Carrinho");
+    printf(" | 3 - Remover Produto");
+    printf(" | 0 - Sair");
+    printf("\nOpcao: ");
+
+    if (scanf("%d", &opc) != 1) {
+      while (getchar() != '\n')
+        ;
+      continue;
     }
+    while (getchar() != '\n')
+      ;
 
-    do {
-        printf("\nCliente: %s", c->nome);
-        printf("\n1 - Adicionar Produto");
-        printf(" | 2 - Listar Carrinho");
-        printf(" | 3 - Remover Produto");
-        printf(" | 0 - Sair");
-        printf("\nOpcao: ");
-
-        if (scanf("%d", &opc) != 1) {
-            while (getchar() != '\n');
-            continue;
-        }
-        while (getchar() != '\n');
-
-        if (opc == 1) {
-            int cd, qt;
-            printf("Codigo do Produto: "); scanf("%d", &cd);
-            printf("Quantidade: "); scanf("%d", &qt); 
-            while (getchar() != '\n');
-            c->meu_carrinho = incluir_produto(c->meu_carrinho, estoque, cd, qt);
-        } else if (opc == 2) {
-            listar_produtos_carrinho(c->meu_carrinho, c->nome);
-        } else if (opc == 3) {
-            int cd_r;
-            printf("Codigo para remover do carrinho: "); 
-            scanf("%d", &cd_r); 
-            while (getchar() != '\n');
-            c->meu_carrinho = remover_carrinho(c->meu_carrinho, cd_r, estoque);
-        }
-    } while (opc != 0);
+    if (opc == 1) {
+      int cd, qt;
+      printf("Codigo do Produto: ");
+      scanf("%d", &cd);
+      printf("Quantidade: ");
+      scanf("%d", &qt);
+      while (getchar() != '\n')
+        ;
+      c->meu_carrinho = incluir_produto(c->meu_carrinho, estoque, cd, qt);
+    } else if (opc == 2) {
+      listar_produtos_carrinho(c->meu_carrinho, c->nome);
+    } else if (opc == 3) {
+      int cd_r;
+      printf("Codigo para remover do carrinho: ");
+      scanf("%d", &cd_r);
+      while (getchar() != '\n')
+        ;
+      c->meu_carrinho = remover_carrinho(c->meu_carrinho, cd_r, estoque);
+    }
+  } while (opc != 0);
 }
 
-
-Carrinho *incluir_produto(Carrinho *carrinho, Produto *estoque, int cd, int qt) {
-    Produto *p = buscar_produto_codigo(estoque, cd);
-    if (!p || p->quantidade < qt) return carrinho;
-    Carrinho *n = (Carrinho *)calloc(1, sizeof(Carrinho));
-    n->cod_unico = p->codigo;
-    strcpy(n->nome_produto, p->nome_prod);
-    n->preco_produto = p->preco;
-    n->quantidade_produto = qt;
-    p->quantidade -= qt;
-    n->prox = carrinho;
-    return n;
+Carrinho *incluir_produto(Carrinho *carrinho, Produto *estoque, int cd,
+                          int qt) {
+  Produto *p = buscar_produto_codigo(estoque, cd);
+  if (!p || p->quantidade < qt)
+    return carrinho;
+  Carrinho *n = (Carrinho *)calloc(1, sizeof(Carrinho));
+  n->cod_unico = p->codigo;
+  strcpy(n->nome_produto, p->nome_prod);
+  n->preco_produto = p->preco;
+  n->quantidade_produto = qt;
+  p->quantidade -= qt;
+  n->prox = carrinho;
+  return n;
 }
 
 void listar_produtos_carrinho(const Carrinho *c, char nome[]) {
-    float t = 0;
-    while (c) {
-        float s = c->preco_produto * c->quantidade_produto;
-        printf("%s | Qtd: %d | Sub: R$%.2f\n", c->nome_produto, c->quantidade_produto, s);
-        t += s; c = c->prox;
-    }
-    printf("Total: R$%.2f\n", t);
-    getchar();
+  float t = 0;
+  while (c) {
+    float s = c->preco_produto * c->quantidade_produto;
+    printf("%s | Qtd: %d | Sub: R$%.2f\n", c->nome_produto,
+           c->quantidade_produto, s);
+    t += s;
+    c = c->prox;
+  }
+  printf("Total: R$%.2f\n", t);
+  getchar();
 }
 Carrinho *remover_carrinho(Carrinho *c, int cd, Produto *estoque) {
-    Carrinho *at = c, *ant = NULL;
-    while (at && at->cod_unico != cd) { ant = at; at = at->prox; }
-    if (at) {
-        Produto *p = buscar_produto_codigo(estoque, cd);
-        if (p) p->quantidade += at->quantidade_produto;
-        if (!ant) c = at->prox;
-        else ant->prox = at->prox;
-        free(at);
-    }
-    return c;
+  Carrinho *at = c, *ant = NULL;
+  while (at && at->cod_unico != cd) {
+    ant = at;
+    at = at->prox;
+  }
+  if (at) {
+    Produto *p = buscar_produto_codigo(estoque, cd);
+    if (p)
+      p->quantidade += at->quantidade_produto;
+    if (!ant)
+      c = at->prox;
+    else
+      ant->prox = at->prox;
+    free(at);
+  }
+  return c;
 }
