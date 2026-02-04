@@ -302,33 +302,37 @@ Cliente *editar_cliente_cpf(Cliente *clientes) {
         printf("Edite o Nome: ");
         fgets(encontrado->nome, MAX_LEN_NOME, stdin);
         encontrado->nome[strcspn(encontrado->nome, "\n")] = '\0';
+        printf("\n---Nome Editado Com sucesso---\n");
         break;
 
       case 2:
         printf("Edite o CPF: ");
         fgets(encontrado->cpf, MAX_LEN_NOME, stdin);
         encontrado->cpf[strcspn(encontrado->cpf, "\n")] = '\0';
+        printf("\n---CPF Editado Com sucesso---\n");
         break;
 
       case 3:
         printf("Edite a Data de Nascimento: ");
         fgets(encontrado->data_nascimento, MAX_LEN_NOME, stdin);
-
-        encontrado
-            ->data_nascimento[strcspn(encontrado->data_nascimento, "\n")] =
+           encontrado->data_nascimento[strcspn(encontrado->data_nascimento, "\n")] =
             '\0';
+        printf("\n---Data de Nascimento Editada Com sucesso---\n");
         break;
 
       case 4:
         printf("Edite o Telefone: ");
         fgets(encontrado->telefone, MAX_LEN_NOME, stdin);
         encontrado->telefone[strcspn(encontrado->telefone, "\n")] = '\0';
+        printf("\n---Telefone Editado Com sucesso---\n");
         break;
+
 
       case 5:
         printf("Edite o Email: ");
         fgets(encontrado->email, MAX_LEN_NOME, stdin);
         encontrado->email[strcspn(encontrado->email, "\n")] = '\0';
+        printf("\n---Email Editado Com sucesso---\n");
         break;
 
       case 0:
@@ -341,7 +345,7 @@ Cliente *editar_cliente_cpf(Cliente *clientes) {
 
     } while (opcao_menu != 0);
 
-    printf("Cliente Editado com Sucesso!");
+    printf("----Cliente Editado com Sucesso!----");
   } else {
     printf("CPF Nao Encontrado!");
   }
