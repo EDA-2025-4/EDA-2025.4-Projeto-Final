@@ -420,7 +420,7 @@ Produto *menu_produto(Produto *estoque) {
 
     switch (opc_menu) {
     case 1:
-	estoque = cadastrar_produto(estoque);
+      // estoque = cadastrar_produto(estoque);
       break;
     case 2:
       // listar_produto(estoque);
@@ -445,6 +445,3 @@ Produto *menu_produto(Produto *estoque) {
   } while (opc_menu != 0);
   return estoque;
 }
-
-
-
