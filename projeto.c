@@ -144,8 +144,17 @@ Cliente *menu_cliente(Cliente *clientes) {
       editar_cliente_cpf(clientes);
       break;
 
-    case 5:
-      break;
+    case 5: {
+      char cpf_remover[MAX_LEN_CPF];
+      printf("\n-----REMOVER CLIENTE-----\n");
+      printf("Digite o CPF do Cliente (xxx.xxx.xxx-xx) ou 0 para cancelar: ");
+      fgets(cpf_remover, MAX_LEN_CPF, stdin);
+      cpf_remover[strcspn(cpf_remover, "\n")] = '\0';
+
+      if (strcmp(cpf_remover, "0") != 0) {
+        clientes = remover_cliente_cpf(clientes, cpf_remover);
+      }
+    } break;
 
     case 0:
       break;
@@ -349,6 +358,46 @@ Cliente *editar_cliente_cpf(Cliente *clientes) {
   return clientes;
 }
 
+Cliente *remover_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
+  Cliente *atual = clientes;
+  Cliente *anterior = NULL;
+
+  while (atual != NULL && strcmp(atual->cpf, cpf_cliente) != 0) {
+    anterior = atual;
+    atual = atual->prox;
+  }
+
+  if (atual == NULL) {
+    printf("\nCPF NAO ENCONTRADO!");
+    printf("\nSelecione ENTER para voltar ao menu");
+    getchar();
+    return clientes;
+  }
+
+  if (atual->meu_carrinho != NULL) {
+    Carrinho *c_atual = atual->meu_carrinho;
+    while (c_atual != NULL) {
+      Carrinho *c_temp = c_atual;
+      c_atual = c_atual->prox;
+      free(c_temp);
+    }
+  }
+
+  if (anterior == NULL) {
+    clientes = atual->prox;
+  } else {
+    anterior->prox = atual->prox;
+  }
+
+  free(atual);
+
+  printf("\nCliente Removido com Sucesso!");
+  printf("\nSelecione ENTER para continuar");
+  getchar();
+
+  return clientes;
+}
+
 Produto *menu_produto(Produto *estoque) {
   int opc_menu;
   do {
@@ -377,6 +426,7 @@ Produto *menu_produto(Produto *estoque) {
       // editar_produto_codigo(estoque);
       break;
     case 5:
+    // remover_cliente
       break;
     case 0:
       break;
