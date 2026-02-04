@@ -88,7 +88,7 @@ int main(void) {
       break;
 
     case 2:
-     produtos = menu_produto(produtos);
+      produtos = menu_produto(produtos);
       break;
 
     case 3:
@@ -337,18 +337,32 @@ Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
 
     } while (opcao_menu != 0);
 
-		printf("Cliente Editado com Sucesso!");
-  }else{
-		printf("CPF Nao Encontrado!");
-	}
+    printf("Cliente Editado com Sucesso!");
+  } else {
+    printf("CPF Nao Encontrado!");
+  }
 
- return clientes;
+  return clientes;
 }
 
-Produto *menu_produto(Produto *estoque){
-	int opc_menu;
-	do{
-		printf("\n-----Gerenciamento de Produtos-----\n");
-		printf("1 - Cadastrar Produto")
-	}while(estoque != NULL);
+Produto *menu_produto(Produto *estoque) {
+  int opc_menu;
+  do {
+    printf("\n-----Gerenciamento de Produtos-----\n");
+    printf("1 - Cadastrar Produto\n");
+    printf("2 - Listar Produtos");
+    printf("3 - Buscar Produtos");
+    printf("4 - Editar Produto");
+    printf("5 - Remover Produto");
+    printf("0 - Voltar ao Menu Principal");
+    scanf("%d", &opc_menu);
+    while (getchar() != '\n')
+      ;
+
+    switch (opc_menu) {
+    case 1:
+      estoque = cadatrar_produto(estoque);
+      break;
+    }
+  } while (estoque != NULL);
 }
