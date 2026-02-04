@@ -66,7 +66,7 @@ void modo_compra(Cliente *clientes, Produto *estoque);
 void buscar_cliente(Cliente *clientes);
 void buscar_produto(Produto *estoque);
 
-int main(void) {
+int main(void) { 
   Cliente *clientes = NULL;
   Produto *produtos = NULL;
   int opcao_menu;
@@ -95,7 +95,7 @@ int main(void) {
         printf("\nProdutos e/ou Clientes Nao Disponiveis\n");
         printf("\n");
       } else {
-        // modo_compra(clientes, produtos);
+         modo_compra(clientes, produtos);
       }
       break;
 
