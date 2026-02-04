@@ -223,6 +223,7 @@ void listar_cliente(const Cliente *clientes) {
     printf("Telefone: %s\n", cliente_lista->telefone);
     printf("Email: %s\n", cliente_lista->email);
 
+    printf("\n");
     cliente_lista = cliente_lista->prox;
   }
   printf("Selecione a tecla ENTER para voltar ao menu");
