@@ -104,7 +104,7 @@ int main(void) {
       break;
 
     default:
-      printf("\nOpcao Invalida\n");
+      printf("\n--OPCAO INVALIDA\n");
       printf("\n");
       break;
     }
@@ -152,7 +152,7 @@ Cliente *menu_cliente(Cliente *clientes) {
       break;
 
     default:
-      printf("\nOpcao Invalida\n");
+      printf("\n--OPCAO INVALIDA--\n");
       printf("\n");
     }
 
