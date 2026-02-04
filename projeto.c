@@ -145,7 +145,7 @@ Cliente *menu_cliente(Cliente *clientes) {
       break;
 
     case 5:
-      remover_cliente_cpf(clientes);
+      clientes = remover_cliente_cpf(clientes);
       break;
 
     case 0:
