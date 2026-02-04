@@ -50,7 +50,6 @@ Cliente *remover_cliente_cpf(Cliente *clientes);
 Produto *cadastrar_produto(Produto *estoque);
 void listar_produto(const Produto *estoque);
 Produto *buscar_produto_codigo(Produto *estoque, int codigo_produto);
-void buscar_produto(Produto *estoque);
 Produto *editar_produto_codigo(Produto *estoque);
 Produto *remover_produto_codigo(Produto *estoque);
 Carrinho *incluir_produto(Carrinho *carrinho_cliente, Produto *estoque,
@@ -414,13 +413,14 @@ Produto *menu_produto(Produto *estoque) {
     printf("4 - Editar Produto\n");
     printf("5 - Remover Produto\n");
     printf("0 - Voltar ao Menu Principal\n");
+    printf("Selecione Uma Opcao: ");
     scanf("%d", &opc_menu);
     while (getchar() != '\n')
       ;
 
     switch (opc_menu) {
     case 1:
-      // estoque = cadastrar_produto(estoque);
+      estoque = cadastrar_produto(estoque);
       break;
     case 2:
       listar_produto(estoque);
@@ -474,6 +474,8 @@ Produto *cadastrar_produto(Produto *estoque) {
 
   printf("Insira o Preco: ");
   scanf("%f", &novo->preco);
+  while (getchar() != '\n')
+    ;
 
   printf("Insira a Quantidade em Estoque: ");
   scanf("%d", &novo->quantidade);
@@ -556,7 +558,7 @@ Produto *editar_produto_codigo(Produto *estoque) {
   printf("Digite o Codigo do Produto que deseja editar: ");
   scanf("%d", &cod_busca);
   while (getchar() != '\n')
-    ; // Limpa buffer
+    ;
 
   Produto *encontrado = buscar_produto_codigo(estoque, cod_busca);
 
