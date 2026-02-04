@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -293,7 +292,8 @@ Cliente *editar_cliente_cpf(Cliente *clientes) {
       printf("3 - Editar Data de Nascimento\n");
       printf("4 - Telefone\n");
       printf("5 - Email\n");
-      printf("0 - Voltar ao Menu de Clientes");
+      printf("0 - Voltar ao Menu de Clientes\n");
+      printf("Escolha uma Opcao: ");
       scanf("%d", &opcao_menu);
       while (getchar() != '\n')
         ;
@@ -365,16 +365,16 @@ Produto *menu_produto(Produto *estoque) {
 
     switch (opc_menu) {
     case 1:
-      estoque = cadatrar_produto(estoque);
+      // estoque = cadatrar_produto(estoque);
       break;
     case 2:
-      listar_produto(estoque);
+      // listar_produto(estoque);
       break;
     case 3:
-      buscar_produto(estoque);
+      // buscar_produto(estoque);
       break;
     case 4:
-      editar_produto_codigo(estoque);
+      // editar_produto_codigo(estoque);
       break;
     case 5:
       break;
@@ -387,5 +387,5 @@ Produto *menu_produto(Produto *estoque) {
       break;
     }
   } while (opc_menu != 0);
-	return estoque;
+  return estoque;
 }
