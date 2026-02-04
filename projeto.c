@@ -66,7 +66,6 @@ Cliente *menu_cliente(Cliente *clientes);
 Produto *menu_produto(Produto *estoque);
 void modo_compra(Cliente *clientes, Produto *estoque);
 void buscar_cliente(Cliente *clientes);
-void editar_cliente(Cliente *clientes);
 
 int main(void) {
   Cliente *clientes = NULL;
@@ -273,11 +272,36 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
 
   return NULL;
 }
-
-/*void editar_cliente(Cliente *clientes) {
-  char cpf_busca[MAX_LEN_CPF];
+Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
+  char cpf_editar[MAX_LEN_CPF];
   printf("P.S: Caso queira retornar ao menu digite 0\n");
   printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
-  fgets(cpf_busca, MAX_LEN_CPF, stdin);
-  cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
-}*/
+  fgets(cpf_editar, MAX_LEN_CPF, stdin);
+  cpf_editar[strcspn(cpf_editar, "\n")] = '\0';
+  if (strcmp(cpf_editar, "0") == 0) {
+    return clientes;
+  }
+
+  Cliente *encontrado = buscar_cliente_cpf(clientes, cpf_editar);
+
+  int opcao_menu;
+  if (encontrado != NULL) {
+    do {
+      printf("\n------Escolha Uma Opcao-----\n");
+      printf("1 - Editar Nome\n");
+      printf("2 - Editar CPF\n");
+      printf("3 - Editar Data de Nascimento\n");
+      printf("4 - Telefone\n");
+      printf("5 - Email\n");
+      scanf("%d", &opcao_menu);
+      while (getchar() != 'n')
+        ;
+				switch(opcao_menu){
+				case 1 :
+				printf("Edite o Nome: ");
+				fgets (encontrado->nome, MAX_LEN_NOME, stdin);
+				encontrado -> nome [strcspn(encontrado->nome, "\n")] = '0';
+			}
+    } while (opcao_menu != 0);
+  }
+}
