@@ -303,10 +303,29 @@ Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
         fgets(encontrado->nome, MAX_LEN_NOME, stdin);
         encontrado->nome[strcspn(encontrado->nome, "\n")] = '0';
         break;
+
       case 2:
         printf("Edite o CPF: ");
         fgets(encontrado->cpf, MAX_LEN_NOME, stdin);
         encontrado->cpf[strcspn(encontrado->cpf, "\n")] = '0';
+        break;
+
+      case 3:
+        printf("Edite a Data de Nascimento: ");
+        fgets(encontrado->data_nascimento, MAX_LEN_NOME, stdin);
+        encontrado->data_nascimento[strcspn(encontrado->data_nascimento, "\n")] = '0';
+        break;
+
+case 4:
+        printf("Edite o Telefone: ");
+        fgets(encontrado->telefone, MAX_LEN_NOME, stdin);
+        encontrado->telefone[strcspn(encontrado->telefone, "\n")] = '0';
+        break;
+
+case 5:
+        printf("Edite o Email: ");
+        fgets(encontrado->email, MAX_LEN_NOME, stdin);
+        encontrado->email[strcspn(encontrado->email, "\n")] = '0';
         break;
       }
     } while (opcao_menu != 0);
