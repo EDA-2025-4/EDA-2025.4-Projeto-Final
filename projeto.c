@@ -445,200 +445,206 @@ Produto *menu_produto(Produto *estoque) {
   } while (opc_menu != 0);
   return estoque;
 }
-<<<<<<< HEAD
 
 Produto *cadastrar_produto(Produto *estoque) {
-    Produto *novo = (Produto *)calloc(1, sizeof(Produto));
-    if (novo == NULL) {
-        printf("ERRO! MEMORIA INSUFICIENTE!\n");
-        getchar();
-        return estoque;
-    }
-
-    printf("\n-----CADASTRAR PRODUTO-----\n");
-    printf("Insira o Codigo do Produto: ");
-    scanf("%d", &novo->codigo);
-    while (getchar() != '\n');
-
-    if (buscar_produto_codigo(estoque, novo->codigo) != NULL) {
-        printf("\n!!!Codigo de Produto Ja Cadastrado!!!\n");
-        printf("\nSelecione ENTER para voltar ao MENU");
-        getchar();
-        free(novo);
-        return estoque;
-    }
-
-    printf("Insira o Nome do Produto: ");
-    fgets(novo->nome_prod, MAX_LEN_NOME, stdin);
-    novo->nome_prod[strcspn(novo->nome_prod, "\n")] = '\0';
-
-    printf("Insira o Preco: ");
-    scanf("%f", &novo->preco);
-    
-    printf("Insira a Quantidade em Estoque: ");
-    scanf("%d", &novo->quantidade);
-    while (getchar() != '\n');
-
-    novo->prox = estoque;
-
-    printf("\nProduto Cadastrado com Sucesso!\n");
-    printf("Selecione ENTER para continuar");
+  Produto *novo = (Produto *)calloc(1, sizeof(Produto));
+  if (novo == NULL) {
+    printf("ERRO! MEMORIA INSUFICIENTE!\n");
     getchar();
+    return estoque;
+  }
 
-    return novo;
+  printf("\n-----CADASTRAR PRODUTO-----\n");
+  printf("Insira o Codigo do Produto: ");
+  scanf("%d", &novo->codigo);
+  while (getchar() != '\n')
+    ;
+
+  if (buscar_produto_codigo(estoque, novo->codigo) != NULL) {
+    printf("\n!!!Codigo de Produto Ja Cadastrado!!!\n");
+    printf("\nSelecione ENTER para voltar ao MENU");
+    getchar();
+    free(novo);
+    return estoque;
+  }
+
+  printf("Insira o Nome do Produto: ");
+  fgets(novo->nome_prod, MAX_LEN_NOME, stdin);
+  novo->nome_prod[strcspn(novo->nome_prod, "\n")] = '\0';
+
+  printf("Insira o Preco: ");
+  scanf("%f", &novo->preco);
+
+  printf("Insira a Quantidade em Estoque: ");
+  scanf("%d", &novo->quantidade);
+  while (getchar() != '\n')
+    ;
+
+  novo->prox = estoque;
+
+  printf("\nProduto Cadastrado com Sucesso!\n");
+  printf("Selecione ENTER para continuar");
+  getchar();
+
+  return novo;
 }
 
-
 Produto *buscar_produto_codigo(Produto *estoque, int codigo_produto) {
-    Produto *atual = estoque;
-    while (atual != NULL) {
-        if (atual->codigo == codigo_produto) {
-            return atual;
-        }
-        atual = atual->prox;
+  Produto *atual = estoque;
+  while (atual != NULL) {
+    if (atual->codigo == codigo_produto) {
+      return atual;
     }
-    return NULL;
+    atual = atual->prox;
+  }
+  return NULL;
 }
 
 void buscar_produto(Produto *estoque) {
-    int cod_busca;
-    printf("\n-----BUSCAR PRODUTO-----\n");
-    printf("Digite o Codigo do Produto (ou 0 para voltar): ");
-    
-    if (scanf("%d", &cod_busca) != 1) {
-        while (getchar() != '\n');
-        return;
-    }
-    while (getchar() != '\n');
+  int cod_busca;
+  printf("\n-----BUSCAR PRODUTO-----\n");
+  printf("Digite o Codigo do Produto (ou 0 para voltar): ");
 
-    if (cod_busca == 0) return;
+  if (scanf("%d", &cod_busca) != 1) {
+    while (getchar() != '\n')
+      ;
+    return;
+  }
+  while (getchar() != '\n')
+    ;
 
-    Produto *encontrado = buscar_produto_codigo(estoque, cod_busca);
+  if (cod_busca == 0)
+    return;
 
-    if (encontrado != NULL) {
-        printf("\n-----INFORMACOES PRODUTO-----\n");
-        printf("Codigo: %d\n", encontrado->codigo);
-        printf("Nome: %s\n", encontrado->nome_prod);
-        printf("Preco: R$ %.2f\n", encontrado->preco);
-        printf("Quantidade: %d\n", encontrado->quantidade);
-    } else {
-        printf("\nCODIGO NAO ENCONTRADO!");
-    }
-    printf("\nSelecione ENTER para voltar ao MENU");
-    getchar();
+  Produto *encontrado = buscar_produto_codigo(estoque, cod_busca);
+
+  if (encontrado != NULL) {
+    printf("\n-----INFORMACOES PRODUTO-----\n");
+    printf("Codigo: %d\n", encontrado->codigo);
+    printf("Nome: %s\n", encontrado->nome_prod);
+    printf("Preco: R$ %.2f\n", encontrado->preco);
+    printf("Quantidade: %d\n", encontrado->quantidade);
+  } else {
+    printf("\nCODIGO NAO ENCONTRADO!");
+  }
+  printf("\nSelecione ENTER para voltar ao MENU");
+  getchar();
 }
 
 void listar_produto(const Produto *estoque) {
-    const Produto *atual = estoque;
-    if (atual == NULL) {
-        printf("\n--SEM REGISTRO DE PRODUTOS--\n");
-        printf("Selecione ENTER para voltar");
-        getchar();
-        return;
-    }
-    printf("\n-----PRODUTOS EM ESTOQUE-----\n");
-    printf("%-5s | %-20s | %-10s | %-5s\n", "COD", "NOME", "PRECO", "QTD");
-    while (atual != NULL) {
-        printf("%-5d | %-20.20s | R$ %-7.2f | %-5d\n", 
-               atual->codigo, atual->nome_prod, atual->preco, atual->quantidade);
-        atual = atual->prox;
-    }
-    printf("\nSelecione ENTER para voltar");
+  const Produto *atual = estoque;
+  if (atual == NULL) {
+    printf("\n--SEM REGISTRO DE PRODUTOS--\n");
+    printf("Selecione ENTER para voltar");
     getchar();
+    return;
+  }
+  printf("\n-----PRODUTOS EM ESTOQUE-----\n");
+  printf("%-5s | %-20s | %-10s | %-5s\n", "COD", "NOME", "PRECO", "QTD");
+  while (atual != NULL) {
+    printf("%-5d | %-20.20s | R$ %-7.2f | %-5d\n", atual->codigo,
+           atual->nome_prod, atual->preco, atual->quantidade);
+    atual = atual->prox;
+  }
+  printf("\nSelecione ENTER para voltar");
+  getchar();
 }
 
 Produto *editar_produto_codigo(Produto *estoque) {
-    int cod_busca;
-    printf("\n-----EDITAR PRODUTO-----\n");
-    printf("Digite o Codigo do Produto que deseja editar: ");
-    scanf("%d", &cod_busca);
-    while (getchar() != '\n'); // Limpa buffer
+  int cod_busca;
+  printf("\n-----EDITAR PRODUTO-----\n");
+  printf("Digite o Codigo do Produto que deseja editar: ");
+  scanf("%d", &cod_busca);
+  while (getchar() != '\n')
+    ; // Limpa buffer
 
-    Produto *encontrado = buscar_produto_codigo(estoque, cod_busca);
+  Produto *encontrado = buscar_produto_codigo(estoque, cod_busca);
 
-    if (encontrado != NULL) {
-        int opc_edit;
-        do {
-            printf("\n--- Editando: %s ---\n", encontrado->nome_prod);
-            printf("1 - Editar Nome\n");
-            printf("2 - Editar Preco\n");
-            printf("3 - Editar Quantidade em Estoque\n");
-            printf("0 - Finalizar Edicao\n");
-            printf("Escolha: ");
-            scanf("%d", &opc_edit);
-            while (getchar() != '\n');
+  if (encontrado != NULL) {
+    int opc_edit;
+    do {
+      printf("\n--- Editando: %s ---\n", encontrado->nome_prod);
+      printf("1 - Editar Nome\n");
+      printf("2 - Editar Preco\n");
+      printf("3 - Editar Quantidade em Estoque\n");
+      printf("0 - Finalizar Edicao\n");
+      printf("Escolha: ");
+      scanf("%d", &opc_edit);
+      while (getchar() != '\n')
+        ;
 
-            switch (opc_edit) {
-                case 1:
-                    printf("Novo Nome: ");
-                    fgets(encontrado->nome_prod, MAX_LEN_NOME, stdin);
-                    encontrado->nome_prod[strcspn(encontrado->nome_prod, "\n")] = '\0';
-                    break;
-                case 2:
-                    printf("Novo Preco: ");
-                    scanf("%f", &encontrado->preco);
-                    while (getchar() != '\n');
-                    break;
-                case 3:
-                    printf("Nova Quantidade: ");
-                    scanf("%d", &encontrado->quantidade);
-                    while (getchar() != '\n');
-                    break;
-                case 0:
-                    break;
-                default:
-                    printf("Opcao Invalida!\n");
-            }
-        } while (opc_edit != 0);
-        printf("\nProduto atualizado com sucesso!\n");
-    } else {
-        printf("\nCODIGO %d NAO ENCONTRADO!\n", cod_busca);
-    }
-    
-    printf("\nPressione ENTER para voltar ao menu...");
-    getchar();
-    return estoque;
+      switch (opc_edit) {
+      case 1:
+        printf("Novo Nome: ");
+        fgets(encontrado->nome_prod, MAX_LEN_NOME, stdin);
+        encontrado->nome_prod[strcspn(encontrado->nome_prod, "\n")] = '\0';
+        break;
+      case 2:
+        printf("Novo Preco: ");
+        scanf("%f", &encontrado->preco);
+        while (getchar() != '\n')
+          ;
+        break;
+      case 3:
+        printf("Nova Quantidade: ");
+        scanf("%d", &encontrado->quantidade);
+        while (getchar() != '\n')
+          ;
+        break;
+      case 0:
+        break;
+      default:
+        printf("Opcao Invalida!\n");
+      }
+    } while (opc_edit != 0);
+    printf("\nProduto atualizado com sucesso!\n");
+  } else {
+    printf("\nCODIGO %d NAO ENCONTRADO!\n", cod_busca);
+  }
+
+  printf("\nPressione ENTER para voltar ao menu...");
+  getchar();
+  return estoque;
 }
 
 Produto *remover_produto_codigo(Produto *estoque) {
-    int cod_remover;
-    Produto *atual = estoque;
-    Produto *anterior = NULL;
+  int cod_remover;
+  Produto *atual = estoque;
+  Produto *anterior = NULL;
 
-    printf("\n-----REMOVER PRODUTO-----\n");
-    printf("Digite o Codigo do Produto que deseja remover (ou 0 para cancelar): ");
-    scanf("%d", &cod_remover);
-    while (getchar() != '\n');
+  printf("\n-----REMOVER PRODUTO-----\n");
+  printf(
+      "Digite o Codigo do Produto que deseja remover (ou 0 para cancelar): ");
+  scanf("%d", &cod_remover);
+  while (getchar() != '\n')
+    ;
 
-    if (cod_remover == 0) return estoque;
-
-    while (atual != NULL && atual->codigo != cod_remover) {
-        anterior = atual;
-        atual = atual->prox;
-    }
-
-    if (atual == NULL) {
-        printf("\nCODIGO %d NAO ENCONTRADO!", cod_remover);
-        printf("\nPressione ENTER para voltar...");
-        getchar();
-        return estoque;
-    }
-
-    if (anterior == NULL) {
-        estoque = atual->prox;
-    } else {
-       
-        anterior->prox = atual->prox;
-    }
-
-    free(atual);
-    printf("\nProduto removido com sucesso!");
-    printf("\nPressione ENTER para continuar...");
-    getchar();
-
+  if (cod_remover == 0)
     return estoque;
+
+  while (atual != NULL && atual->codigo != cod_remover) {
+    anterior = atual;
+    atual = atual->prox;
+  }
+
+  if (atual == NULL) {
+    printf("\nCODIGO %d NAO ENCONTRADO!", cod_remover);
+    printf("\nPressione ENTER para voltar...");
+    getchar();
+    return estoque;
+  }
+
+  if (anterior == NULL) {
+    estoque = atual->prox;
+  } else {
+
+    anterior->prox = atual->prox;
+  }
+
+  free(atual);
+  printf("\nProduto removido com sucesso!");
+  printf("\nPressione ENTER para continuar...");
+  getchar();
+
+  return estoque;
 }
-
-
-=======
->>>>>>> 466f5f9faf6900a9a43371de12b9cf120781274b
