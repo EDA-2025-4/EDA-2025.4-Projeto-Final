@@ -358,13 +358,14 @@ Cliente *remover_cliente_cpf(Cliente *clientes) {
   Cliente *atual = clientes;
   Cliente *anterior = NULL;
   char cpf_remover[MAX_LEN_CPF];
+
   printf("\n-----REMOVER CLIENTE-----\n");
   printf("Digite o CPF do Cliente (xxx.xxx.xxx-xx) ou 0 para cancelar: ");
   fgets(cpf_remover, MAX_LEN_CPF, stdin);
   cpf_remover[strcspn(cpf_remover, "\n")] = '\0';
 
-  if (strcmp(cpf_remover, "0") != 0) {
-    clientes = remover_cliente_cpf(clientes);
+  if (strcmp(cpf_remover, "0") == 0) {
+    return clientes;
   }
 
   while (atual != NULL && strcmp(atual->cpf, cpf_remover) != 0) {
@@ -374,7 +375,7 @@ Cliente *remover_cliente_cpf(Cliente *clientes) {
 
   if (atual == NULL) {
     printf("\nCPF NAO ENCONTRADO!");
-    printf("\nSelecione ENTER para voltar ao menu");
+    printf("\nSelecione ENTER para voltar ao MENU");
     getchar();
     return clientes;
   }
