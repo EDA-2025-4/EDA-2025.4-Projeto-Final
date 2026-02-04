@@ -47,7 +47,7 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
 Cliente *editar_cliente_cpf(Cliente *clientes);
 Cliente *remover_cliente_cpf(Cliente *clientes);
 
-Produto *cadatrar_produto(Produto *estoque);
+Produto *cadastrar_produto(Produto *estoque);
 void listar_produto(const Produto *estoque);
 Produto *buscar_produto_codigo(Produto *estoque, int codigo_produto);
 Produto *editar_produto_codigo(Produto *estoque);
@@ -409,18 +409,18 @@ Produto *menu_produto(Produto *estoque) {
   do {
     printf("\n-----Gerenciamento de Produtos-----\n");
     printf("1 - Cadastrar Produto\n");
-    printf("2 - Listar Produtos");
-    printf("3 - Buscar Produtos");
-    printf("4 - Editar Produto");
-    printf("5 - Remover Produto");
-    printf("0 - Voltar ao Menu Principal");
+    printf("2 - Listar Produtos\n");
+    printf("3 - Buscar Produtos\n");
+    printf("4 - Editar Produto\n");
+    printf("5 - Remover Produto\n");
+    printf("0 - Voltar ao Menu Principal\n");
     scanf("%d", &opc_menu);
     while (getchar() != '\n')
       ;
 
     switch (opc_menu) {
     case 1:
-      // estoque = cadatrar_produto(estoque);
+	estoque = cadatrar_produto(estoque);
       break;
     case 2:
       // listar_produto(estoque);
@@ -445,3 +445,6 @@ Produto *menu_produto(Produto *estoque) {
   } while (opc_menu != 0);
   return estoque;
 }
+
+
+
