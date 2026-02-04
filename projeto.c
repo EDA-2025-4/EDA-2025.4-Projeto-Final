@@ -346,3 +346,7 @@ Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
 
  return clientes;
 }
+
+Produto *cadatrar_produto(Produto *estoque){
+
+}
