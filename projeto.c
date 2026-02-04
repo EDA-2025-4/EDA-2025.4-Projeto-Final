@@ -293,7 +293,7 @@ Cliente *editar_cliente_cpf(Cliente *clientes) {
       printf("4 - Telefone\n");
       printf("5 - Email\n");
       printf("0 - Voltar ao Menu de Clientes\n");
-      printf("Escolha uma Opcao: ");
+      printf("Escolha uma Opcao: \n");
       scanf("%d", &opcao_menu);
       while (getchar() != '\n')
         ;
