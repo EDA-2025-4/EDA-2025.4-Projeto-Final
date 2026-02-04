@@ -378,13 +378,14 @@ Produto *menu_produto(Produto *estoque) {
       break;
     case 5:
       break;
-	case 0:
-			break;
-	
-	default:
-			printf("OPCAO INVALIDA!");
-			printf("\n");
-			break;
+    case 0:
+      break;
+
+    default:
+      printf("OPCAO INVALIDA!");
+      printf("\n");
+      break;
     }
   } while (opc_menu != 0);
+	return estoque;
 }
