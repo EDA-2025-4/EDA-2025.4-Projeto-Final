@@ -647,31 +647,56 @@ Produto *remover_produto_codigo(Produto *estoque) {
   return estoque;
 }
 
-void modo_compra(Cliente *clientes, Produto *estoque) {
+void modo_compra(Cliente clientes, Produtoestoque) {
     char cpf_b[MAX_LEN_CPF];
     int opc;
-    printf("\nCPF do Cliente: ");
+
+    printf("\n--- MODO DE COMPRA ---");
+    printf("\nCPF do Cliente (xxx.xxx.xxx-xx): ");
     fgets(cpf_b, MAX_LEN_CPF, stdin);
     cpf_b[strcspn(cpf_b, "\n")] = '\0';
+
     Cliente *c = buscar_cliente_cpf(clientes, cpf_b);
-    if (!c) return;
+
+    if (c == NULL) {
+        printf("\n!!! Cliente NAO encontrado !!!\n");
+        printf("Pressione ENTER para voltar...");
+        getchar();
+        return;
+    }
+
     do {
-        printf("\n1-Add 2-Listar 3-Remover 0-Sair\nOpcao: ");
-        scanf("%d", &opc); while (getchar() != '\n');
+        printf("\nCliente: %s", c->nome);
+        printf("\n1 - Adicionar Produto");
+        printf(" | 2 - Listar Carrinho");
+        printf(" | 3 - Remover Produto");
+        printf(" | 0 - Sair");
+        printf("\nOpcao: ");
+
+        if (scanf("%d", &opc) != 1) {
+            while (getchar() != '\n');
+            continue;
+        }
+        while (getchar() != '\n');
+
         if (opc == 1) {
             int cd, qt;
-            printf("Cod: "); scanf("%d", &cd);
-            printf("Qtd: "); scanf("%d", &qt); while (getchar() != '\n');
+            printf("Codigo do Produto: "); scanf("%d", &cd);
+            printf("Quantidade: "); scanf("%d", &qt); 
+            while (getchar() != '\n');
             c->meu_carrinho = incluir_produto(c->meu_carrinho, estoque, cd, qt);
         } else if (opc == 2) {
             listar_produtos_carrinho(c->meu_carrinho, c->nome);
         } else if (opc == 3) {
             int cd_r;
-            printf("Cod: "); scanf("%d", &cd_r); while (getchar() != '\n');
+            printf("Codigo para remover do carrinho: "); 
+            scanf("%d", &cd_r); 
+            while (getchar() != '\n');
             c->meu_carrinho = remover_carrinho(c->meu_carrinho, cd_r, estoque);
         }
     } while (opc != 0);
 }
+
 
 Carrinho *incluir_produto(Carrinho *carrinho, Produto *estoque, int cd, int qt) {
     Produto *p = buscar_produto_codigo(estoque, cd);
