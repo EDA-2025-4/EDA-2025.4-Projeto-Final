@@ -7,7 +7,7 @@
 #define MAX_LEN_CPF 20
 #define MAX_LEN_EMAIL 100
 #define MAX_LEN_NASC 20
-#define MAX_LEN_TEL 20
+#define MAX_LEN_TEL 30
 
 typedef struct cliente Cliente;
 typedef struct produto Produto;
@@ -176,7 +176,7 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
   fgets(novo->nome, MAX_LEN_NOME, stdin);
   novo->nome[strcspn(novo->nome, "\n")] = '\0';
 
-  printf("\nInsira seu CPF (xxx.xxx.xxx-xx): ");
+  printf("Insira seu CPF (xxx.xxx.xxx-xx): ");
   fgets(novo->cpf, MAX_LEN_CPF, stdin);
   novo->cpf[strcspn(novo->cpf, "\n")] = '\0';
 
@@ -187,15 +187,15 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
     return clientes;
   }
 
-  printf("\nInsira sua data de nascimento (DD/MM/YYYY): ");
+  printf("Insira sua data de nascimento (DD/MM/YYYY): ");
   fgets(novo->data_nascimento, MAX_LEN_NASC, stdin);
   novo->data_nascimento[strcspn(novo->data_nascimento, "\n")] = '\0';
 
-  printf("\nInsira seu telefone (DDD)XXXX-XXXX: ");
+  printf("Insira seu telefone (DDD)XXXX-XXXX: ");
   fgets(novo->telefone, MAX_LEN_TEL, stdin);
 
   novo->telefone[strcspn(novo->telefone, "\n")] = '\0';
-  printf("\nInsira seu email: ");
+  printf("Insira seu email: ");
   fgets(novo->email, MAX_LEN_EMAIL, stdin);
   novo->email[strcspn(novo->email, "\n")] = '\0';
 
@@ -232,7 +232,8 @@ void listar_cliente(const Cliente *clientes) {
 
 void buscar_cliente(Cliente *clientes) {
   char cpf_busca[MAX_LEN_CPF];
-  printf("P.S: Caso queira retornar ao menu digite 0\n");
+  printf("-----Buscar Cliente-----");
+  printf("\nP.S: Caso queira retornar ao menu digite 0\n");
   printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
   fgets(cpf_busca, MAX_LEN_CPF, stdin);
   cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
@@ -272,10 +273,10 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
   return NULL;
 }
 
-void editar_cliente(Cliente *clientes) {
+/*void editar_cliente(Cliente *clientes) {
   char cpf_busca[MAX_LEN_CPF];
   printf("P.S: Caso queira retornar ao menu digite 0\n");
   printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
   fgets(cpf_busca, MAX_LEN_CPF, stdin);
   cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
-}
+}*/
