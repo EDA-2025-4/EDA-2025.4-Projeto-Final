@@ -88,9 +88,7 @@ int main(void) {
       break;
 
     case 2:
-      printf("\nMenu Produto\n");
-      printf("\n");
-      // produtos = menu_produto(produtos);
+     produtos = menu_produto(produtos);
       break;
 
     case 3:
@@ -347,6 +345,10 @@ Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
  return clientes;
 }
 
-Produto *cadatrar_produto(Produto *estoque){
-
+Produto *menu_produto(Produto *estoque){
+	int opc_menu;
+	do{
+		printf("\n-----Gerenciamento de Produtos-----\n");
+		printf("1 - Cadastrar Produto")
+	}while(estoque != NULL);
 }
