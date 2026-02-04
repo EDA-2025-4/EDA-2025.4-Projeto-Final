@@ -363,6 +363,9 @@ Produto *menu_produto(Produto *estoque) {
     case 1:
       estoque = cadatrar_produto(estoque);
       break;
+	case 2:
+	listar_produto(estoque);
+	break;
     }
   } while (estoque != NULL);
 }
