@@ -652,28 +652,27 @@ Produto *remover_produto_codigo(Produto *estoque) {
 }
 
 void modo_compra(Cliente *clientes, Produto *estoque) {
-    char cpf_busca[MAX_LEN_CPF];
-    int cod_prod, qtd;
-
-    printf("\n----- MODO DE COMPRA -----\n");
-    printf("Digite o CPF do Cliente comprador: ");
-    fgets(cpf_busca, MAX_LEN_CPF, stdin);
-    cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
-
-    Cliente *c = buscar_cliente_cpf(clientes, cpf_busca);
-    if (c == NULL) {
-        printf("\nErro: Cliente nao encontrado!\n");
-        printf("Pressione ENTER para voltar...");
-        getchar();
-        return;
-    }
-
-    printf("\nCliente Selecionado: %s\n", c->nome);
-    printf("Digite o Codigo do Produto que deseja comprar: ");
-    scanf("%d", &cod_prod);
-    printf("Quantidade: ");
-    scanf("%d", &qtd);
-    while (getchar() != '\n');
-
-    c->meu_carrinho = incluir_produto(c->meu_carrinho, estoque, cod_prod, qtd);
+    char cpf_b[MAX_LEN_CPF];
+    int opc;
+    printf("\nCPF do Cliente: ");
+    fgets(cpf_b, MAX_LEN_CPF, stdin);
+    cpf_b[strcspn(cpf_b, "\n")] = '\0';
+    Cliente *c = buscar_cliente_cpf(clientes, cpf_b);
+    if (!c) return;
+    do {
+        printf("\n1-Add 2-Listar 3-Remover 0-Sair\nOpcao: ");
+        scanf("%d", &opc); while (getchar() != '\n');
+        if (opc == 1) {
+            int cd, qt;
+            printf("Cod: "); scanf("%d", &cd);
+            printf("Qtd: "); scanf("%d", &qt); while (getchar() != '\n');
+            c->meu_carrinho = incluir_produto(c->meu_carrinho, estoque, cd, qt);
+        } else if (opc == 2) {
+            listar_produtos_carrinho(c->meu_carrinho, c->nome);
+        } else if (opc == 3) {
+            int cd_r;
+            printf("Cod: "); scanf("%d", &cd_r); while (getchar() != '\n');
+            c->meu_carrinho = remover_carrinho(c->meu_carrinho, cd_r, estoque);
+        }
+    } while (opc != 0);
 }
