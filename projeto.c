@@ -611,13 +611,11 @@ Produto *remover_produto_codigo(Produto *estoque) {
 
     if (cod_remover == 0) return estoque;
 
-    // Busca o produto na lista
     while (atual != NULL && atual->codigo != cod_remover) {
         anterior = atual;
         atual = atual->prox;
     }
 
-    // Se não encontrou
     if (atual == NULL) {
         printf("\nCODIGO %d NAO ENCONTRADO!", cod_remover);
         printf("\nPressione ENTER para voltar...");
@@ -625,11 +623,10 @@ Produto *remover_produto_codigo(Produto *estoque) {
         return estoque;
     }
 
-    // Se for o primeiro da lista
     if (anterior == NULL) {
         estoque = atual->prox;
     } else {
-        // Se estiver no meio ou fim, o anterior aponta para o próximo do atual
+       
         anterior->prox = atual->prox;
     }
 
