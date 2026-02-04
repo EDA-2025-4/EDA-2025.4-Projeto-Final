@@ -676,3 +676,16 @@ void modo_compra(Cliente *clientes, Produto *estoque) {
         }
     } while (opc != 0);
 }
+
+Carrinho *incluir_produto(Carrinho *carrinho, Produto *estoque, int cd, int qt) {
+    Produto *p = buscar_produto_codigo(estoque, cd);
+    if (!p || p->quantidade < qt) return carrinho;
+    Carrinho *n = (Carrinho *)calloc(1, sizeof(Carrinho));
+    n->cod_unico = p->codigo;
+    strcpy(n->nome_produto, p->nome_prod);
+    n->preco_produto = p->preco;
+    n->quantidade_produto = qt;
+    p->quantidade -= qt;
+    n->prox = carrinho;
+    return n;
+}
