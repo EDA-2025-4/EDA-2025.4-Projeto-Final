@@ -278,7 +278,7 @@ Cliente *editar_cliente_cpf(Cliente *clientes) {
   printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
   fgets(cpf_cliente, MAX_LEN_CPF, stdin);
   cpf_cliente[strcspn(cpf_cliente, "\n")] = '\0';
-  if (strcmp(cpf_cliente, "0") == '0') {
+  if (strcmp(cpf_cliente, "0") == 0) {
     return clientes;
   }
 
