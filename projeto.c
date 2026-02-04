@@ -420,7 +420,7 @@ Produto *menu_produto(Produto *estoque) {
 
     switch (opc_menu) {
     case 1:
-	estoque = cadastrar_produto(estoque);
+      // estoque = cadastrar_produto(estoque);
       break;
     case 2:
       listar_produto(estoque);
@@ -445,6 +445,7 @@ Produto *menu_produto(Produto *estoque) {
   } while (opc_menu != 0);
   return estoque;
 }
+<<<<<<< HEAD
 
 Produto *cadastrar_produto(Produto *estoque) {
     Produto *novo = (Produto *)calloc(1, sizeof(Produto));
@@ -639,3 +640,5 @@ Produto *remover_produto_codigo(Produto *estoque) {
 }
 
 
+=======
+>>>>>>> 466f5f9faf6900a9a43371de12b9cf120781274b
