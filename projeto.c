@@ -650,3 +650,30 @@ Produto *remover_produto_codigo(Produto *estoque) {
 
   return estoque;
 }
+
+void modo_compra(Cliente *clientes, Produto *estoque) {
+    char cpf_busca[MAX_LEN_CPF];
+    int cod_prod, qtd;
+
+    printf("\n----- MODO DE COMPRA -----\n");
+    printf("Digite o CPF do Cliente comprador: ");
+    fgets(cpf_busca, MAX_LEN_CPF, stdin);
+    cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
+
+    Cliente *c = buscar_cliente_cpf(clientes, cpf_busca);
+    if (c == NULL) {
+        printf("\nErro: Cliente nao encontrado!\n");
+        printf("Pressione ENTER para voltar...");
+        getchar();
+        return;
+    }
+
+    printf("\nCliente Selecionado: %s\n", c->nome);
+    printf("Digite o Codigo do Produto que deseja comprar: ");
+    scanf("%d", &cod_prod);
+    printf("Quantidade: ");
+    scanf("%d", &qtd);
+    while (getchar() != '\n');
+
+    c->meu_carrinho = incluir_produto(c->meu_carrinho, estoque, cod_prod, qtd);
+}
