@@ -47,57 +47,12 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
 Cliente *editar_cliente_cpf(Cliente *clientes);
 Cliente *remover_cliente_cpf(Cliente *clientes);
 
-Produto *cadastrar_produto(Produto *estoque);
+Produto *cadatrar_produto(Produto *estoque);
 void listar_produto(const Produto *estoque);
 Produto *buscar_produto_codigo(Produto *estoque, int codigo_produto);
 Produto *editar_produto_codigo(Produto *estoque);
 Produto *remover_produto_codigo(Produto *estoque, int codigo_produto);
-Produto *cadastrar_produto(Produto *estoque) {
-    Produto *novo = (Produto *)calloc(1, sizeof(Produto));
-    if (novo == NULL) return estoque;
 
-    printf("\n--- CADASTRAR PRODUTO ---\n");
-    printf("Codigo: ");
-    scanf("%d", &novo->codigo);
-    while (getchar() != '\n');
-
-    printf("Nome: ");
-    fgets(novo->nome_prod, MAX_LEN_NOME, stdin);
-    novo->nome_prod[strcspn(novo->nome_prod, "\n")] = '\0';
-
-    printf("Preco: ");
-    scanf("%f", &novo->preco);
-    printf("Quantidade: ");
-    scanf("%d", &novo->quantidade);
-    while (getchar() != '\n');
-
-    novo->prox = estoque;
-    printf("\n[!] Produto cadastrado!\n");
-    return novo;
-}
-void listar_produto(const Produto *estoque) {
-    const Produto *atual = estoque;
-
-    if (atual == NULL) {
-        printf("\n[!] ESTOQUE VAZIO: Cadastre produtos antes de comprar.\n");
-        printf("Pressione ENTER para continuar...");
-        getchar();
-        return;
-    }
-
-    printf("\n==================================================\n");
-    printf("            PRODUTOS DISPONIVEIS                  \n");
-    printf("==================================================\n");
-    printf("%-5s | %-20s | %-10s | %-5s\n", "COD", "NOME", "PRECO", "QTD");
-    printf("--------------------------------------------------\n");
-
-    while (atual != NULL) {
-        printf("%-5d | %-20.20s | R$ %-7.2f | %-5d\n", 
-               atual->codigo, atual->nome_prod, atual->preco, atual->quantidade);
-        atual = atual->prox; // Pula para o próximo produto da lista
-    }
-    printf("==================================================\n");
-}
 Carrinho *incluir_produto(Carrinho *carrinho_cliente, Produto *estoque,
                           int codigo_produto_carrinho,
                           int quantidade_produtos_carrinho);
@@ -105,180 +60,13 @@ void listar_produtos_carrinho(const Carrinho *carrinho_cliente,
                               char cpf_cliente_carrinho[]);
 Carrinho *remover_carrinho(Carrinho *carrinho_cliente, int codigo_produto,
                            char cpf_cliente_carrinho[]);
-Carrinho *incluir_produto(Carrinho *carrinho_cliente, Produto *estoque, int codigo, int qtd) {
-    Produto *p = buscar_produto_codigo(estoque, codigo);
-
-
-void modo_compra(Cliente *clientes, Produto *estoque);
-
-
-    if (p == NULL) {
-        printf("\n-- PRODUTO NAO ENCONTRADO --\n");
-        printf("Pressione ENTER para continuar...");
-        getchar();
-        return carrinho_cliente;
-    }
-
-    if (p->quantidade < qtd) {
-        printf("\n-- ESTOQUE INSUFICIENTE (Disponivel: %d) --\n", p->quantidade);
-        printf("Pressione ENTER para continuar...");
-        getchar();
-        return carrinho_cliente;
-    }
-
-    Carrinho *novo_item = (Carrinho *)calloc(1, sizeof(Carrinho));
-    if (novo_item == NULL) return carrinho_cliente;
-
-    novo_item->cod_unico = p->codigo;
-    strcpy(novo_item->nome_produto, p->nome_prod);
-    novo_item->preco_produto = p->preco;
-    novo_item->quantidade_produto = qtd;
-
-    p->quantidade -= qtd;
-    novo_item->prox = carrinho_cliente;
-
-    printf("\n-- ITEM ADICIONADO COM SUCESSO --\n");
-    printf("Pressione ENTER para continuar...");
-    getchar();
-    
-    return novo_item;
-}
 
 Cliente *menu_cliente(Cliente *clientes);
-Produto *menu_produto(Produto *estoque) {
-    int opc_menu;
-    do {
-        system("clear"); 
-        printf("===== GERENCIAMENTO DE PRODUTOS =====\n");
-        printf("1 - Cadastrar Produto\n");
-        printf("2 - Listar Produtos\n");
-        printf("3 - Buscar Produtos\n");
-        printf("4 - Editar Produto\n");
-        printf("5 - Remover Produto\n");
-        printf("0 - Voltar ao Menu Principal\n");
-        printf("-------------------------------------\n");
-        printf("Escolha uma Opcao: ");
-        
-        if (scanf("%d", &opc_menu) != 1) {
-            while (getchar() != '\n'); 
-            continue;
-        }
-        while (getchar() != '\n'); 
-
-        switch (opc_menu) {
-            case 1:
-                estoque = cadastrar_produto(estoque); 
-                break;
-            case 2:
-                system("clear");
-                listar_produto(estoque);
-                printf("\nPressione ENTER para voltar ao menu...");
-                getchar(); 
-                break;
-            case 3:
-                break;
-            case 0:
-                break;
-            default:
-                printf("\n[!] OPCAO INVALIDA!\n");
-                printf("Pressione ENTER...");
-                getchar();
-                break;
-        }
-    } while (opc_menu != 0);
-    return estoque;
-}
-Produto *buscar_produto_codigo(Produto *estoque, int codigo_produto) {
-    Produto *atual = estoque;
-    while (atual != NULL) {
-        if (atual->codigo == codigo_produto) {
-            return atual;
-        }
-        atual = atual->prox;
-    }
-    return NULL;
-}
+Produto *menu_produto(Produto *estoque);
 void modo_compra(Cliente *clientes, Produto *estoque);
 void buscar_cliente(Cliente *clientes);
 void buscar_produto(Produto *estoque);
-void modo_compra(Cliente *clientes, Produto *estoque) {
-    char cpf_busca[MAX_LEN_CPF];
-    int opcao, cod_prod, qtd;
 
-    system("clear");
-    printf("========== LOGIN MODO COMPRA ==========\n");
-    printf("Digite o CPF do Cliente: ");
-    fgets(cpf_busca, MAX_LEN_CPF, stdin);
-    cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
-
-    Cliente *c = buscar_cliente_cpf(clientes, cpf_busca);
-
-    if (c == NULL) {
-        printf("\n-- CLIENTE NAO ENCONTRADO --\n");
-        printf("Pressione ENTER para voltar...");
-        getchar();
-        return;
-    }
-
-    do {
-        system("clear");
-        printf("==========================================\n");
-        printf("           MODO DE COMPRA - LOJA          \n");
-        printf("==========================================\n");
-        printf(" Cliente: %s\n", c->nome);
-        printf("------------------------------------------\n\n");
-        printf("  [1] Adicionar Produto ao Carrinho\n");
-        printf("  [2] Visualizar meu Carrinho\n");
-        printf("  [0] Sair do Modo de Compra\n");
-        printf("\n------------------------------------------\n");
-        printf(" Escolha uma Opcao: ");
-        
-        scanf("%d", &opcao);
-        while (getchar() != '\n');
-
-        switch (opcao) {
-            case 1:
-                system("clear");
-                listar_produto(estoque);
-                printf("\nDigite o CODIGO do produto: ");
-                scanf("%d", &cod_prod);
-                printf("Quantidade desejada: ");
-                scanf("%d", &qtd);
-                while (getchar() != '\n');
-                c->meu_carrinho = incluir_produto(c->meu_carrinho, estoque, cod_prod, qtd);
-                break;
-
-            case 2:
-                system("clear");
-                printf("==========================================\n");
-                printf("           SEU CARRINHO ATUAL             \n");
-                printf("==========================================\n");
-                Carrinho *temp = c->meu_carrinho;
-                
-                if (temp == NULL) {
-                    printf("\n       Seu carrinho esta vazio!\n");
-                } else {
-                    float total_geral = 0;
-                    printf("%-5s | %-15s | %-3s | %-10s\n", "ID", "PRODUTO", "QTD", "SUBTOTAL");
-                    printf("------------------------------------------\n");
-                    while (temp != NULL) {
-                        float subtotal = temp->preco_produto * temp->quantidade_produto;
-                        printf("%-5d | %-15.15s | %-3d | R$ %-8.2f\n",
-                               temp->cod_unico, temp->nome_produto, 
-                               temp->quantidade_produto, subtotal);
-                        total_geral += subtotal;
-                        temp = temp->prox;
-                    }
-                    printf("------------------------------------------\n");
-                    printf(" TOTAL DA COMPRA: R$ %.2f\n", total_geral);
-                }
-                printf("\n==========================================\n");
-                printf("Pressione ENTER para retornar...");
-                getchar();
-                break;
-        }
-    } while (opcao != 0);
-}
 int main(void) {
   Cliente *clientes = NULL;
   Produto *produtos = NULL;
@@ -308,7 +96,7 @@ int main(void) {
         printf("\nProdutos e/ou Clientes Nao Disponiveis\n");
         printf("\n");
       } else {
-      
+        // modo_compra(clientes, produtos);
       }
       break;
 
@@ -453,7 +241,6 @@ void buscar_cliente(Cliente *clientes) {
   if (strcmp(cpf_busca, "0") == 0) {
     return;
   }
-
 
   Cliente *encontrado = buscar_cliente_cpf(clientes, cpf_busca);
   if (encontrado != NULL) {
@@ -615,4 +402,46 @@ Cliente *remover_cliente_cpf(Cliente *clientes) {
   getchar();
 
   return clientes;
+}
+
+Produto *menu_produto(Produto *estoque) {
+  int opc_menu;
+  do {
+    printf("\n-----Gerenciamento de Produtos-----\n");
+    printf("1 - Cadastrar Produto\n");
+    printf("2 - Listar Produtos");
+    printf("3 - Buscar Produtos");
+    printf("4 - Editar Produto");
+    printf("5 - Remover Produto");
+    printf("0 - Voltar ao Menu Principal");
+    scanf("%d", &opc_menu);
+    while (getchar() != '\n')
+      ;
+
+    switch (opc_menu) {
+    case 1:
+      // estoque = cadatrar_produto(estoque);
+      break;
+    case 2:
+      // listar_produto(estoque);
+      break;
+    case 3:
+      // buscar_produto(estoque);
+      break;
+    case 4:
+      // editar_produto_codigo(estoque);
+      break;
+    case 5:
+      // remover_cliente
+      break;
+    case 0:
+      break;
+
+    default:
+      printf("OPCAO INVALIDA!");
+      printf("\n");
+      break;
+    }
+  } while (opc_menu != 0);
+  return estoque;
 }
