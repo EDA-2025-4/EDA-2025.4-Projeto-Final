@@ -231,9 +231,9 @@ void listar_cliente(const Cliente *clientes) {
 
 void buscar_cliente(Cliente *clientes) {
   char cpf_busca[MAX_LEN_CPF];
-  printf("-----Buscar Cliente-----");
-  printf("\nP.S: Caso queira retornar ao menu digite 0\n");
-  printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
+  printf("-----Buscar Cliente-----\n");
+  printf("P.S: Caso queira retornar ao Menu digite 0\n");
+  printf("Digite o CPF do Cliente (xxx.xxx.xxx-xx): ");
   fgets(cpf_busca, MAX_LEN_CPF, stdin);
   cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
 
@@ -273,8 +273,8 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
 }
 Cliente *editar_cliente_cpf(Cliente *clientes) {
   char cpf_cliente[MAX_LEN_CPF];
-  printf("P.S: Caso queira retornar ao menu digite 0\n");
-  printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
+  printf("P.S: Caso queira retornar ao Menu digite 0\n");
+  printf("Digite o CPF do Cliente (xxx.xxx.xxx-xx): ");
   fgets(cpf_cliente, MAX_LEN_CPF, stdin);
   cpf_cliente[strcspn(cpf_cliente, "\n")] = '\0';
   if (strcmp(cpf_cliente, "0") == 0) {
@@ -293,7 +293,7 @@ Cliente *editar_cliente_cpf(Cliente *clientes) {
       printf("4 - Telefone\n");
       printf("5 - Email\n");
       printf("0 - Voltar ao Menu de Clientes\n");
-      printf("Escolha uma Opcao: \n");
+      printf("Escolha uma Opcao: ");
       scanf("%d", &opcao_menu);
       while (getchar() != '\n')
         ;
