@@ -66,7 +66,7 @@ Cliente *menu_cliente(Cliente *clientes);
 Produto *menu_produto(Produto *estoque);
 void modo_compra(Cliente *clientes, Produto *estoque);
 void buscar_cliente(Cliente *clientes);
-void buscar_produto (Produto *estoque);
+void buscar_produto(Produto *estoque);
 
 int main(void) {
   Cliente *clientes = NULL;
@@ -142,7 +142,7 @@ Cliente *menu_cliente(Cliente *clientes) {
     } break;
 
     case 4:
-				editar_cliente_cpf (clientes, );
+      editar_cliente_cpf(clientes);
       break;
 
     case 5:
@@ -273,7 +273,7 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
   return NULL;
 }
 Cliente *editar_cliente_cpf(Cliente *clientes) {
-	char cpf_cliente [MAX_LEN_CPF];
+  char cpf_cliente[MAX_LEN_CPF];
   printf("P.S: Caso queira retornar ao menu digite 0\n");
   printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
   fgets(cpf_cliente, MAX_LEN_CPF, stdin);
@@ -315,7 +315,8 @@ Cliente *editar_cliente_cpf(Cliente *clientes) {
         fgets(encontrado->data_nascimento, MAX_LEN_NOME, stdin);
 
         encontrado
-            ->data_nascimento[strcspn(encontrado->data_nascimento, "\n")] = '\0';
+            ->data_nascimento[strcspn(encontrado->data_nascimento, "\n")] =
+            '\0';
         break;
 
       case 4:
@@ -366,15 +367,24 @@ Produto *menu_produto(Produto *estoque) {
     case 1:
       estoque = cadatrar_produto(estoque);
       break;
-	case 2:
-	listar_produto(estoque);
-	break;
-		case 3:
-		buscar_produto(estoque);
+    case 2:
+      listar_produto(estoque);
+      break;
+    case 3:
+      buscar_produto(estoque);
+      break;
+    case 4:
+      editar_produto_codigo(estoque);
+      break;
+    case 5:
+      break;
+	case 0:
 			break;
-		case 4:
-			editar_produto_codigo(estoque);
+	
+	default:
+			printf("OPCAO INVALIDA!");
+			printf("\n");
 			break;
     }
-  } while (estoque != NULL);
+  } while (opc_menu != 0);
 }
