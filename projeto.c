@@ -172,7 +172,7 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
   }
 
   printf("\n-----CADASTRAR CLIENTE-----\n");
-  printf("Insira seu Nome: ");
+  printf("Insira seu Nome e Sobrenome: ");
   fgets(novo->nome, MAX_LEN_NOME, stdin);
   novo->nome[strcspn(novo->nome, "\n")] = '\0';
 
