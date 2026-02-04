@@ -66,7 +66,7 @@ Cliente *menu_cliente(Cliente *clientes);
 Produto *menu_produto(Produto *estoque);
 void modo_compra(Cliente *clientes, Produto *estoque);
 void buscar_cliente(Cliente *clientes);
-void editar_cliente (Cliente *clientes);
+void editar_cliente(Cliente *clientes);
 
 int main(void) {
   Cliente *clientes = NULL;
@@ -272,6 +272,10 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
   return NULL;
 }
 
-void editar_cliente (Cliente *clientes){
-
+void editar_cliente(Cliente *clientes) {
+  char cpf_busca[MAX_LEN_CPF];
+  printf("P.S: Caso queira retornar ao menu digite 0\n");
+  printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
+  fgets(cpf_busca, MAX_LEN_CPF, stdin);
+  cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
 }
