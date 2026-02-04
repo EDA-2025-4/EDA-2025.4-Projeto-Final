@@ -52,13 +52,9 @@ void listar_produto(const Produto *estoque);
 Produto *buscar_produto_codigo(Produto *estoque, int codigo_produto);
 Produto *editar_produto_codigo(Produto *estoque);
 Produto *remover_produto_codigo(Produto *estoque);
-Carrinho *incluir_produto(Carrinho *carrinho_cliente, Produto *estoque,
-                          int codigo_produto_carrinho,
-                          int quantidade_produtos_carrinho);
-void listar_produtos_carrinho(const Carrinho *carrinho_cliente,
-                              char cpf_cliente_carrinho[]);
-Carrinho *remover_carrinho(Carrinho *carrinho_cliente, int codigo_produto,
-                           char cpf_cliente_carrinho[]);
+Carrinho incluir_produto(Carrinhocarrinho_cliente, Produto estoque, int codigo_produto_carrinho, int quantidade_produtos_carrinho);
+void listar_produtos_carrinho(const Carrinhocarrinho_cliente, char nome_cliente[]);
+Carrinho remover_carrinho(Carrinhocarrinho_cliente, int codigo_produto, Produto *estoque);
 
 Cliente *menu_cliente(Cliente *clientes);
 Produto *menu_produto(Produto *estoque);
