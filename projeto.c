@@ -45,7 +45,7 @@ Cliente *cadastrar_cliente(Cliente *clientes);
 void listar_cliente(const Cliente *clientes);
 Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
 Cliente *editar_cliente_cpf(Cliente *clientes);
-Cliente *remover_cliente_cpf(Cliente *clientes, char cpf_cliente[]);
+Cliente *remover_cliente_cpf(Cliente *clientes);
 
 Produto *cadatrar_produto(Produto *estoque);
 void listar_produto(const Produto *estoque);
@@ -144,17 +144,9 @@ Cliente *menu_cliente(Cliente *clientes) {
       editar_cliente_cpf(clientes);
       break;
 
-    case 5: {
-      char cpf_remover[MAX_LEN_CPF];
-      printf("\n-----REMOVER CLIENTE-----\n");
-      printf("Digite o CPF do Cliente (xxx.xxx.xxx-xx) ou 0 para cancelar: ");
-      fgets(cpf_remover, MAX_LEN_CPF, stdin);
-      cpf_remover[strcspn(cpf_remover, "\n")] = '\0';
-
-      if (strcmp(cpf_remover, "0") != 0) {
-        clientes = remover_cliente_cpf(clientes, cpf_remover);
-      }
-    } break;
+    case 5:
+      remover_cliente_cpf(clientes);
+      break;
 
     case 0:
       break;
@@ -173,7 +165,7 @@ Cliente *cadastrar_cliente(Cliente *clientes) {
   Cliente *novo = (Cliente *)calloc(1, sizeof(Cliente));
   if (novo == NULL) {
     printf("ERRO! MEMORIA INSUFICIENTE!\n");
-    printf("\nSelecione a teclar ENTER para voltar ao menu\n");
+    printf("\nSelecione a teclar ENTER para voltar ao MENU\n");
     getchar();
     return clientes;
   }
@@ -218,7 +210,7 @@ void listar_cliente(const Cliente *clientes) {
 
   if (cliente_lista == NULL) {
     printf("\n--SEM REGISTRO DE CLIENTES\n--");
-    printf("Selecione a tecla ENTER para voltar ao menu");
+    printf("Selecione a tecla ENTER para voltar ao MENU");
     getchar();
     return;
   }
@@ -362,11 +354,20 @@ Cliente *editar_cliente_cpf(Cliente *clientes) {
   return clientes;
 }
 
-Cliente *remover_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
+Cliente *remover_cliente_cpf(Cliente *clientes) {
   Cliente *atual = clientes;
   Cliente *anterior = NULL;
+  char cpf_remover[MAX_LEN_CPF];
+  printf("\n-----REMOVER CLIENTE-----\n");
+  printf("Digite o CPF do Cliente (xxx.xxx.xxx-xx) ou 0 para cancelar: ");
+  fgets(cpf_remover, MAX_LEN_CPF, stdin);
+  cpf_remover[strcspn(cpf_remover, "\n")] = '\0';
 
-  while (atual != NULL && strcmp(atual->cpf, cpf_cliente) != 0) {
+  if (strcmp(cpf_remover, "0") != 0) {
+    clientes = remover_cliente_cpf(clientes);
+  }
+
+  while (atual != NULL && strcmp(atual->cpf, cpf_remover) != 0) {
     anterior = atual;
     atual = atual->prox;
   }
@@ -430,7 +431,7 @@ Produto *menu_produto(Produto *estoque) {
       // editar_produto_codigo(estoque);
       break;
     case 5:
-    // remover_cliente
+      // remover_cliente
       break;
     case 0:
       break;
