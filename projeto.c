@@ -163,7 +163,7 @@ Cliente *menu_cliente(Cliente *clientes) {
 }
 
 Cliente *cadastrar_cliente(Cliente *clientes) {
-  Cliente *novo = (Cliente *)malloc(sizeof(Cliente));
+  Cliente *novo = (Cliente *)calloc(1, sizeof(Cliente));
   if (novo == NULL) {
     printf("ERRO! MEMORIA INSUFICIENTE!\n");
     printf("\nSelecione a teclar ENTER para voltar ao menu\n");
