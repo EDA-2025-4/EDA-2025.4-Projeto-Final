@@ -273,16 +273,15 @@ Cliente *buscar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
   return NULL;
 }
 Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
-  char cpf_editar[MAX_LEN_CPF];
   printf("P.S: Caso queira retornar ao menu digite 0\n");
   printf("\nDigite o CPF do Cliente (xxx.xxx.xxx-xx): ");
-  fgets(cpf_editar, MAX_LEN_CPF, stdin);
-  cpf_editar[strcspn(cpf_editar, "\n")] = '\0';
-  if (strcmp(cpf_editar, "0") == 0) {
+  fgets(cpf_cliente, MAX_LEN_CPF, stdin);
+  cpf_cliente[strcspn(cpf_cliente, "\n")] = '\0';
+  if (strcmp(cpf_cliente, "0") == '0') {
     return clientes;
   }
 
-  Cliente *encontrado = buscar_cliente_cpf(clientes, cpf_editar);
+  Cliente *encontrado = buscar_cliente_cpf(clientes, cpf_cliente);
 
   int opcao_menu;
   if (encontrado != NULL) {
@@ -295,7 +294,7 @@ Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
       printf("5 - Email\n");
       printf("0 - Voltar ao Menu de Clientes");
       scanf("%d", &opcao_menu);
-      while (getchar() != 'n')
+      while (getchar() != '\n')
         ;
       switch (opcao_menu) {
       case 1:
@@ -345,4 +344,5 @@ Cliente *editar_cliente_cpf(Cliente *clientes, char cpf_cliente[]) {
 		printf("CPF Nao Encontrado!");
 	}
 
+ return clientes;
 }
