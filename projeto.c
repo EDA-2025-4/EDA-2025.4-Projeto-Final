@@ -66,6 +66,7 @@ Cliente *menu_cliente(Cliente *clientes);
 Produto *menu_produto(Produto *estoque);
 void modo_compra(Cliente *clientes, Produto *estoque);
 void buscar_cliente(Cliente *clientes);
+void buscar_produto (Produto *estoque);
 
 int main(void) {
   Cliente *clientes = NULL;
@@ -366,6 +367,9 @@ Produto *menu_produto(Produto *estoque) {
 	case 2:
 	listar_produto(estoque);
 	break;
+		case 3:
+		buscar_produto(estoque);
+			break;
     }
   } while (estoque != NULL);
 }
